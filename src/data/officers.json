@@ -2,121 +2,126 @@
   {
     "id": "zhao-yun",
     "name": "\u8d99\u96f2",
-    "category": "\u8700",
-    "seals": [
-      { "name": "\u653b\u64ca", "type": "\u80fd\u529b\u7cfb", "count": 1 },
-      { "name": "\u98a8", "type": "\u5c6c\u6027\u7cfb", "count": 1 }
+    "faction": "shu",
+    "factionName": "\u8700",
+    "roles": ["\u7a81\u9032", "\u9ad8\u6a5f\u52d5"],
+    "companionSeals": [
+      { "sealId": "attack", "count": 1 },
+      { "sealId": "wind", "count": 1 }
     ],
     "uniqueSkill": {
       "name": "\u9f8d\u81bd\u7a81",
       "seals": [
-        { "name": "\u653b\u64ca", "type": "\u80fd\u529b\u7cfb", "count": 2 },
-        { "name": "\u901f\u5ea6", "type": "\u80fd\u529b\u7cfb", "count": 1 }
+        { "sealId": "attack", "count": 2 },
+        { "sealId": "speed", "count": 1 }
       ]
     },
     "summonSkill": {
       "name": "\u84bc\u9f8d\u53ec\u559a",
       "seals": [
-        { "name": "\u98a8", "type": "\u5c6c\u6027\u7cfb", "count": 2 },
-        { "name": "\u9023\u64ca", "type": "\u7279\u6b8a\u7cfb", "count": 1 }
+        { "sealId": "wind", "count": 2 },
+        { "sealId": "combo", "count": 1 }
       ]
-    },
-    "tags": ["\u7a81\u9032", "\u9ad8\u6a5f\u52d5"]
+    }
   },
   {
     "id": "lu-bu",
     "name": "\u5442\u5e03",
-    "category": "\u7fa4\u96c4",
-    "seals": [
-      { "name": "\u653b\u64ca", "type": "\u80fd\u529b\u7cfb", "count": 2 },
-      { "name": "\u9738\u6c23", "type": "\u7279\u6b8a\u7cfb", "count": 1 }
+    "faction": "other",
+    "factionName": "\u7fa4\u96c4",
+    "roles": ["\u9ad8\u706b\u529b", "\u58d3\u5236"],
+    "companionSeals": [
+      { "sealId": "attack", "count": 2 },
+      { "sealId": "aura", "count": 1 }
     ],
     "uniqueSkill": {
       "name": "\u9b3c\u795e\u4e82\u821e",
       "seals": [
-        { "name": "\u653b\u64ca", "type": "\u80fd\u529b\u7cfb", "count": 3 },
-        { "name": "\u9738\u6c23", "type": "\u7279\u6b8a\u7cfb", "count": 1 }
+        { "sealId": "attack", "count": 3 },
+        { "sealId": "aura", "count": 1 }
       ]
     },
     "summonSkill": {
       "name": "\u65b9\u5929\u53ec\u96f7",
       "seals": [
-        { "name": "\u96f7", "type": "\u5c6c\u6027\u7cfb", "count": 2 },
-        { "name": "\u66b4\u64ca", "type": "\u7279\u6b8a\u7cfb", "count": 1 }
+        { "sealId": "thunder", "count": 2 },
+        { "sealId": "critical", "count": 1 }
       ]
-    },
-    "tags": ["\u9ad8\u706b\u529b", "\u58d3\u5236"]
+    }
   },
   {
     "id": "sun-shangxiang",
     "name": "\u5b6b\u5c1a\u9999",
-    "category": "\u5433",
-    "seals": [
-      { "name": "\u901f\u5ea6", "type": "\u80fd\u529b\u7cfb", "count": 1 },
-      { "name": "\u706b", "type": "\u5c6c\u6027\u7cfb", "count": 1 }
+    "faction": "wu",
+    "factionName": "\u5433",
+    "roles": ["\u9060\u8ddd\u96e2", "\u9023\u64ca"],
+    "companionSeals": [
+      { "sealId": "speed", "count": 1 },
+      { "sealId": "fire", "count": 1 }
     ],
     "uniqueSkill": {
       "name": "\u5f13\u8170\u59ec",
       "seals": [
-        { "name": "\u901f\u5ea6", "type": "\u80fd\u529b\u7cfb", "count": 2 },
-        { "name": "\u66b4\u64ca", "type": "\u7279\u6b8a\u7cfb", "count": 1 }
+        { "sealId": "speed", "count": 2 },
+        { "sealId": "critical", "count": 1 }
       ]
     },
     "summonSkill": {
       "name": "\u708e\u7bad\u96e8",
       "seals": [
-        { "name": "\u706b", "type": "\u5c6c\u6027\u7cfb", "count": 2 },
-        { "name": "\u9023\u64ca", "type": "\u7279\u6b8a\u7cfb", "count": 1 }
+        { "sealId": "fire", "count": 2 },
+        { "sealId": "combo", "count": 1 }
       ]
-    },
-    "tags": ["\u9060\u8ddd\u96e2", "\u9023\u64ca"]
+    }
   },
   {
     "id": "cao-cao",
     "name": "\u66f9\u64cd",
-    "category": "\u9b4f",
-    "seals": [
-      { "name": "\u667a\u7565", "type": "\u7279\u6b8a\u7cfb", "count": 1 },
-      { "name": "\u51b0", "type": "\u5c6c\u6027\u7cfb", "count": 1 }
+    "faction": "wei",
+    "factionName": "\u9b4f",
+    "roles": ["\u6307\u63ee", "\u5747\u8861"],
+    "companionSeals": [
+      { "sealId": "strategy", "count": 1 },
+      { "sealId": "ice", "count": 1 }
     ],
     "uniqueSkill": {
       "name": "\u8987\u9053",
       "seals": [
-        { "name": "\u667a\u7565", "type": "\u7279\u6b8a\u7cfb", "count": 2 },
-        { "name": "\u9632\u79a6", "type": "\u80fd\u529b\u7cfb", "count": 1 }
+        { "sealId": "strategy", "count": 2 },
+        { "sealId": "defense", "count": 1 }
       ]
     },
     "summonSkill": {
       "name": "\u9b4f\u6b66\u865f\u4ee4",
       "seals": [
-        { "name": "\u9632\u79a6", "type": "\u80fd\u529b\u7cfb", "count": 2 },
-        { "name": "\u51b0", "type": "\u5c6c\u6027\u7cfb", "count": 1 }
+        { "sealId": "defense", "count": 2 },
+        { "sealId": "ice", "count": 1 }
       ]
-    },
-    "tags": ["\u6307\u63ee", "\u5747\u8861"]
+    }
   },
   {
     "id": "wang-yuanji",
     "name": "\u738b\u5143\u59ec",
-    "category": "\u6649",
-    "seals": [
-      { "name": "\u9632\u79a6", "type": "\u80fd\u529b\u7cfb", "count": 1 },
-      { "name": "\u9023\u64ca", "type": "\u7279\u6b8a\u7cfb", "count": 1 }
+    "faction": "jin",
+    "factionName": "\u6649",
+    "roles": ["\u6280\u5de7", "\u63f4\u8b77"],
+    "companionSeals": [
+      { "sealId": "defense", "count": 1 },
+      { "sealId": "combo", "count": 1 }
     ],
     "uniqueSkill": {
       "name": "\u51b7\u975c\u9023\u5203",
       "seals": [
-        { "name": "\u9023\u64ca", "type": "\u7279\u6b8a\u7cfb", "count": 2 },
-        { "name": "\u901f\u5ea6", "type": "\u80fd\u529b\u7cfb", "count": 1 }
+        { "sealId": "combo", "count": 2 },
+        { "sealId": "speed", "count": 1 }
       ]
     },
     "summonSkill": {
       "name": "\u98db\u5203\u63f4\u8b77",
       "seals": [
-        { "name": "\u98a8", "type": "\u5c6c\u6027\u7cfb", "count": 1 },
-        { "name": "\u9023\u64ca", "type": "\u7279\u6b8a\u7cfb", "count": 2 }
+        { "sealId": "wind", "count": 1 },
+        { "sealId": "combo", "count": 2 }
       ]
-    },
-    "tags": ["\u6280\u5de7", "\u63f4\u8b77"]
+    }
   }
 ]
