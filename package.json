@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "convert:officers": "node scripts/convert-officers-csv.mjs",
+    "convert:traits": "node scripts/convert-traits-csv.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

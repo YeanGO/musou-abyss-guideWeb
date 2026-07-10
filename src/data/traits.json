@@ -1,16 +1,100 @@
 [
-  { "id": "power", "name": "力", "category": "ability", "categoryName": "能力系", "sort": 10 },
-  { "id": "fortitude", "name": "堅", "category": "ability", "categoryName": "能力系", "sort": 20 },
-  { "id": "speed", "name": "速", "category": "ability", "categoryName": "能力系", "sort": 30 },
-  { "id": "fire", "name": "火", "category": "element", "categoryName": "屬性系", "sort": 110 },
-  { "id": "wind", "name": "風", "category": "element", "categoryName": "屬性系", "sort": 120 },
-  { "id": "thunder", "name": "雷", "category": "element", "categoryName": "屬性系", "sort": 130 },
-  { "id": "shu", "name": "蜀", "category": "special", "categoryName": "特殊系", "sort": 210 },
-  { "id": "wei", "name": "魏", "category": "special", "categoryName": "特殊系", "sort": 220 },
-  { "id": "wu", "name": "吳", "category": "special", "categoryName": "特殊系", "sort": 230 },
-  { "id": "brave-general", "name": "猛將", "category": "special", "categoryName": "特殊系", "sort": 240 },
-  { "id": "shu-five-tigers", "name": "蜀之五虎大將", "category": "special", "categoryName": "特殊系", "sort": 250 },
-  { "id": "brute-force", "name": "蠻力", "category": "special", "categoryName": "特殊系", "sort": 260 },
-  { "id": "commander", "name": "指揮", "category": "special", "categoryName": "特殊系", "sort": 270 },
-  { "id": "archery", "name": "弓術", "category": "special", "categoryName": "特殊系", "sort": 280 }
+  {
+    "id": "power",
+    "name": "力",
+    "category": "ability",
+    "categoryName": "能力系",
+    "sort": 10
+  },
+  {
+    "id": "fortitude",
+    "name": "堅",
+    "category": "ability",
+    "categoryName": "能力系",
+    "sort": 20
+  },
+  {
+    "id": "speed",
+    "name": "速",
+    "category": "ability",
+    "categoryName": "能力系",
+    "sort": 30
+  },
+  {
+    "id": "fire",
+    "name": "火",
+    "category": "element",
+    "categoryName": "屬性系",
+    "sort": 110
+  },
+  {
+    "id": "wind",
+    "name": "風",
+    "category": "element",
+    "categoryName": "屬性系",
+    "sort": 120
+  },
+  {
+    "id": "thunder",
+    "name": "雷",
+    "category": "element",
+    "categoryName": "屬性系",
+    "sort": 130
+  },
+  {
+    "id": "shu",
+    "name": "蜀",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 210
+  },
+  {
+    "id": "wei",
+    "name": "魏",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 220
+  },
+  {
+    "id": "wu",
+    "name": "吳",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 230
+  },
+  {
+    "id": "brave-general",
+    "name": "猛將",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 240
+  },
+  {
+    "id": "shu-five-tigers",
+    "name": "蜀之五虎大將",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 250
+  },
+  {
+    "id": "brute-force",
+    "name": "蠻力",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 260
+  },
+  {
+    "id": "commander",
+    "name": "指揮",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 270
+  },
+  {
+    "id": "archery",
+    "name": "弓術",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 280
+  }
 ]

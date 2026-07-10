@@ -1,0 +1,15 @@
+id,name,category,categoryName,sort
+power,力,ability,能力系,10
+fortitude,堅,ability,能力系,20
+speed,速,ability,能力系,30
+fire,火,element,屬性系,110
+wind,風,element,屬性系,120
+thunder,雷,element,屬性系,130
+shu,蜀,special,特殊系,210
+wei,魏,special,特殊系,220
+wu,吳,special,特殊系,230
+brave-general,猛將,special,特殊系,240
+shu-five-tigers,蜀之五虎大將,special,特殊系,250
+brute-force,蠻力,special,特殊系,260
+commander,指揮,special,特殊系,270
+archery,弓術,special,特殊系,280
