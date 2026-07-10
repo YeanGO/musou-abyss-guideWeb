@@ -1,7 +1,7 @@
 export const TRAIT_CATEGORIES = [
-  { id: 'ability', name: '\u80fd\u529b\u7cfb' },
-  { id: 'element', name: '\u5c6c\u6027\u7cfb' },
-  { id: 'special', name: '\u7279\u6b8a\u7cfb' },
+  { id: 'ability', name: '能力系' },
+  { id: 'element', name: '屬性系' },
+  { id: 'special', name: '特殊系' },
 ];
 
 export const emptyBuild = {

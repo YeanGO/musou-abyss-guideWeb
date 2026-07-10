@@ -1,7 +1,7 @@
 [
-  { "id": "wei", "name": "\u9b4f", "sort": 10 },
-  { "id": "shu", "name": "\u8700", "sort": 20 },
-  { "id": "wu", "name": "\u5433", "sort": 30 },
-  { "id": "jin", "name": "\u6649", "sort": 40 },
-  { "id": "other", "name": "\u7fa4\u96c4", "sort": 50 }
+  { "id": "wei", "name": "魏", "sort": 10 },
+  { "id": "shu", "name": "蜀", "sort": 20 },
+  { "id": "wu", "name": "吳", "sort": 30 },
+  { "id": "jin", "name": "晉", "sort": 40 },
+  { "id": "other", "name": "群雄", "sort": 50 }
 ]

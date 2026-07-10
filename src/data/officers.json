@@ -1,9 +1,9 @@
 [
   {
     "id": "guan-yu",
-    "name": "\u95dc\u7fbd",
+    "name": "關羽",
     "faction": "shu",
-    "factionName": "\u8700",
+    "factionName": "蜀",
     "level": 36,
     "playerData": {
       "traits": [
@@ -16,17 +16,17 @@
         { "traitId": "fire", "count": 1 }
       ],
       "operationTrait": {
-        "name": "\u8ecd\u795e",
-        "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002"
+        "name": "軍神",
+        "description": "操作時的專屬特性，效果內容先用假資料。"
       },
       "weaponBreakthrough": {
         "specialWeapon": {
-          "name": "\u6301\u6709\u7279\u6b66",
-          "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002"
+          "name": "持有特武",
+          "description": "持有特武時發動的效果，內容先用假資料。"
         },
         "limitBreak": {
-          "name": "\u9650\u754c\u7a81\u7834",
-          "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002"
+          "name": "限界突破",
+          "description": "限界突破時發動的效果，內容先用假資料。"
         }
       }
     },
@@ -41,8 +41,8 @@
         { "traitId": "fire", "count": 1 }
       ],
       "summonSkill": {
-        "name": "\u88c2\u5203\u30fb\u708e",
-        "description": "\u63ee\u51fa\u6a6b\u6383\u524d\u65b9\u7684\u708e\u5c6c\u6027\u65ac\u64ca\u3002",
+        "name": "裂刃・炎",
+        "description": "揮出橫掃前方的炎屬性斬擊。",
         "level": 1,
         "upgradeConditions": {
           "all": [
@@ -51,8 +51,8 @@
         }
       },
       "uniqueTactic": {
-        "name": "\u4e94\u864e\u96c6\u7d50",
-        "description": "\u53ec\u559a\u9019\u540d\u82f1\u5091\u6642\uff0c\u4e5f\u6703\u540c\u6642\u53ec\u559a\u6301\u6709\u5370\u8a18\u300c\u8700\u4e4b\u4e94\u864e\u5927\u5c07\u300d\u7684\u82f1\u5091\u3002",
+        "name": "五虎集結",
+        "description": "召喚這名英傑時，也會同時召喚持有印記「蜀之五虎大將」的英傑。",
         "activationConditions": {
           "all": [
             { "type": "trait", "traitId": "shu-five-tigers", "required": 5 }
@@ -63,9 +63,9 @@
   },
   {
     "id": "zhang-fei",
-    "name": "\u5f35\u98db",
+    "name": "張飛",
     "faction": "shu",
-    "factionName": "\u8700",
+    "factionName": "蜀",
     "level": 34,
     "playerData": {
       "traits": [
@@ -78,12 +78,12 @@
         { "traitId": "thunder", "count": 1 }
       ],
       "operationTrait": {
-        "name": "\u71d5\u4eba",
-        "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002"
+        "name": "燕人",
+        "description": "操作時的專屬特性，效果內容先用假資料。"
       },
       "weaponBreakthrough": {
-        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
-        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+        "specialWeapon": { "name": "持有特武", "description": "持有特武時發動的效果，內容先用假資料。" },
+        "limitBreak": { "name": "限界突破", "description": "限界突破時發動的效果，內容先用假資料。" }
       }
     },
     "supportData": {
@@ -97,8 +97,8 @@
         { "traitId": "thunder", "count": 1 }
       ],
       "summonSkill": {
-        "name": "\u86c7\u77db\u6012\u543c",
-        "description": "\u4ee5\u96f7\u64ca\u9707\u958b\u5468\u570d\u6575\u4eba\u3002",
+        "name": "蛇矛怒吼",
+        "description": "以雷擊震開周圍敵人。",
         "level": 1,
         "upgradeConditions": {
           "all": [
@@ -107,8 +107,8 @@
         }
       },
       "uniqueTactic": {
-        "name": "\u71d5\u4eba\u6012\u543c",
-        "description": "\u9700\u8981\u883b\u529b\u8207\u731b\u5c07\u7d44\u5408\u624d\u80fd\u555f\u52d5\u3002",
+        "name": "燕人怒吼",
+        "description": "需要蠻力與猛將組合才能啟動。",
         "activationConditions": {
           "all": [
             { "type": "trait", "traitId": "brute-force", "required": 3 },
@@ -120,9 +120,9 @@
   },
   {
     "id": "zhao-yun",
-    "name": "\u8d99\u96f2",
+    "name": "趙雲",
     "faction": "shu",
-    "factionName": "\u8700",
+    "factionName": "蜀",
     "level": 33,
     "playerData": {
       "traits": [
@@ -133,10 +133,10 @@
         { "traitId": "wind", "count": 1 },
         { "traitId": "power", "count": 1 }
       ],
-      "operationTrait": { "name": "\u9f8d\u81bd", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "operationTrait": { "name": "龍膽", "description": "操作時的專屬特性，效果內容先用假資料。" },
       "weaponBreakthrough": {
-        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
-        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+        "specialWeapon": { "name": "持有特武", "description": "持有特武時發動的效果，內容先用假資料。" },
+        "limitBreak": { "name": "限界突破", "description": "限界突破時發動的效果，內容先用假資料。" }
       }
     },
     "supportData": {
@@ -149,8 +149,8 @@
         { "traitId": "power", "count": 1 }
       ],
       "summonSkill": {
-        "name": "\u9f8d\u81bd\u7a81",
-        "description": "\u4ee5\u9ad8\u901f\u7a81\u9032\u8cab\u7a7f\u6575\u9663\u3002",
+        "name": "龍膽突",
+        "description": "以高速突進貫穿敵陣。",
         "level": 1,
         "upgradeConditions": {
           "all": [
@@ -159,8 +159,8 @@
         }
       },
       "uniqueTactic": {
-        "name": "\u5e38\u5c71\u4e4b\u9f8d",
-        "description": "\u8700\u4e4b\u4e94\u864e\u5927\u5c07\u8db3\u5920\u6642\u555f\u52d5\u3002",
+        "name": "常山之龍",
+        "description": "蜀之五虎大將足夠時啟動。",
         "activationConditions": {
           "all": [
             { "type": "trait", "traitId": "shu-five-tigers", "required": 5 }
@@ -171,9 +171,9 @@
   },
   {
     "id": "liu-bei",
-    "name": "\u5289\u5099",
+    "name": "劉備",
     "faction": "shu",
-    "factionName": "\u8700",
+    "factionName": "蜀",
     "level": 30,
     "playerData": {
       "traits": [
@@ -181,10 +181,10 @@
         { "traitId": "commander", "count": 1 },
         { "traitId": "fortitude", "count": 1 }
       ],
-      "operationTrait": { "name": "\u4ec1\u5fb7", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "operationTrait": { "name": "仁德", "description": "操作時的專屬特性，效果內容先用假資料。" },
       "weaponBreakthrough": {
-        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
-        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+        "specialWeapon": { "name": "持有特武", "description": "持有特武時發動的效果，內容先用假資料。" },
+        "limitBreak": { "name": "限界突破", "description": "限界突破時發動的效果，內容先用假資料。" }
       }
     },
     "supportData": {
@@ -194,8 +194,8 @@
         { "traitId": "fortitude", "count": 1 }
       ],
       "summonSkill": {
-        "name": "\u4ec1\u5fb7\u865f\u4ee4",
-        "description": "\u4ee5\u6307\u63ee\u7cfb\u7279\u6027\u5f37\u5316\u968a\u4f0d\u3002",
+        "name": "仁德號令",
+        "description": "以指揮系特性強化隊伍。",
         "level": 1,
         "upgradeConditions": {
           "all": [
@@ -204,8 +204,8 @@
         }
       },
       "uniqueTactic": {
-        "name": "\u662d\u70c8\u4e4b\u5fb7",
-        "description": "\u8700\u52e2\u529b\u8207\u6307\u63ee\u4e26\u91cd\u3002",
+        "name": "昭烈之德",
+        "description": "蜀勢力與指揮並重。",
         "activationConditions": {
           "all": [
             { "type": "trait", "traitId": "shu", "required": 4 },
@@ -217,9 +217,9 @@
   },
   {
     "id": "ma-chao",
-    "name": "\u99ac\u8d85",
+    "name": "馬超",
     "faction": "shu",
-    "factionName": "\u8700",
+    "factionName": "蜀",
     "level": 32,
     "playerData": {
       "traits": [
@@ -229,10 +229,10 @@
         { "traitId": "speed", "count": 1 },
         { "traitId": "thunder", "count": 1 }
       ],
-      "operationTrait": { "name": "\u9326\u99ac\u8d85", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "operationTrait": { "name": "錦馬超", "description": "操作時的專屬特性，效果內容先用假資料。" },
       "weaponBreakthrough": {
-        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
-        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+        "specialWeapon": { "name": "持有特武", "description": "持有特武時發動的效果，內容先用假資料。" },
+        "limitBreak": { "name": "限界突破", "description": "限界突破時發動的效果，內容先用假資料。" }
       }
     },
     "supportData": {
@@ -244,8 +244,8 @@
         { "traitId": "thunder", "count": 1 }
       ],
       "summonSkill": {
-        "name": "\u9326\u99ac\u8d85",
-        "description": "\u9ad8\u901f\u7a81\u64ca\u4e26\u9644\u5e36\u96f7\u64ca\u3002",
+        "name": "錦馬超",
+        "description": "高速突擊並附帶雷擊。",
         "level": 1,
         "upgradeConditions": {
           "all": [
@@ -254,8 +254,8 @@
         }
       },
       "uniqueTactic": {
-        "name": "\u897f\u6dbc\u4e4b\u9326",
-        "description": "\u9700\u8981\u901f\u8207\u731b\u5c07\u7279\u6027\u3002",
+        "name": "西涼之錦",
+        "description": "需要速與猛將特性。",
         "activationConditions": {
           "all": [
             { "type": "trait", "traitId": "speed", "required": 2 },
@@ -267,9 +267,9 @@
   },
   {
     "id": "huang-zhong",
-    "name": "\u9ec3\u5fe0",
+    "name": "黃忠",
     "faction": "shu",
-    "factionName": "\u8700",
+    "factionName": "蜀",
     "level": 31,
     "playerData": {
       "traits": [
@@ -279,10 +279,10 @@
         { "traitId": "archery", "count": 1 },
         { "traitId": "fire", "count": 1 }
       ],
-      "operationTrait": { "name": "\u8001\u5c07\u4e4b\u5f13", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "operationTrait": { "name": "老將之弓", "description": "操作時的專屬特性，效果內容先用假資料。" },
       "weaponBreakthrough": {
-        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
-        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+        "specialWeapon": { "name": "持有特武", "description": "持有特武時發動的效果，內容先用假資料。" },
+        "limitBreak": { "name": "限界突破", "description": "限界突破時發動的效果，內容先用假資料。" }
       }
     },
     "supportData": {
@@ -294,8 +294,8 @@
         { "traitId": "fire", "count": 1 }
       ],
       "summonSkill": {
-        "name": "\u767e\u6b65\u7a7f\u694a",
-        "description": "\u9060\u8ddd\u96e2\u653e\u51fa\u706b\u5c6c\u6027\u7bad\u96e8\u3002",
+        "name": "百步穿楊",
+        "description": "遠距離放出火屬性箭雨。",
         "level": 1,
         "upgradeConditions": {
           "all": [
@@ -304,8 +304,8 @@
         }
       },
       "uniqueTactic": {
-        "name": "\u8001\u5c07\u4e4b\u5f13",
-        "description": "\u5f13\u8853\u8207\u706b\u4e26\u91cd\u6642\u555f\u52d5\u3002",
+        "name": "老將之弓",
+        "description": "弓術與火並重時啟動。",
         "activationConditions": {
           "all": [
             { "type": "trait", "traitId": "archery", "required": 2 },
@@ -317,9 +317,9 @@
   },
   {
     "id": "lu-bu",
-    "name": "\u5442\u5e03",
+    "name": "呂布",
     "faction": "other",
-    "factionName": "\u7fa4\u96c4",
+    "factionName": "群雄",
     "level": 40,
     "playerData": {
       "traits": [
@@ -328,10 +328,10 @@
         { "traitId": "power", "count": 2 },
         { "traitId": "thunder", "count": 1 }
       ],
-      "operationTrait": { "name": "\u9b3c\u795e", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "operationTrait": { "name": "鬼神", "description": "操作時的專屬特性，效果內容先用假資料。" },
       "weaponBreakthrough": {
-        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
-        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+        "specialWeapon": { "name": "持有特武", "description": "持有特武時發動的效果，內容先用假資料。" },
+        "limitBreak": { "name": "限界突破", "description": "限界突破時發動的效果，內容先用假資料。" }
       }
     },
     "supportData": {
@@ -342,8 +342,8 @@
         { "traitId": "thunder", "count": 1 }
       ],
       "summonSkill": {
-        "name": "\u9b3c\u795e\u4e82\u821e",
-        "description": "\u5f37\u529b\u7bc4\u570d\u653b\u64ca\u3002",
+        "name": "鬼神亂舞",
+        "description": "強力範圍攻擊。",
         "level": 1,
         "upgradeConditions": {
           "any": [
@@ -353,8 +353,8 @@
         }
       },
       "uniqueTactic": {
-        "name": "\u7121\u96d9\u98db\u5c07",
-        "description": "\u529b\u8207\u883b\u529b\u8db3\u5920\u6642\u555f\u52d5\u3002",
+        "name": "無雙飛將",
+        "description": "力與蠻力足夠時啟動。",
         "activationConditions": {
           "all": [
             { "type": "trait", "traitId": "power", "required": 4 },
@@ -366,9 +366,9 @@
   },
   {
     "id": "cao-cao",
-    "name": "\u66f9\u64cd",
+    "name": "曹操",
     "faction": "wei",
-    "factionName": "\u9b4f",
+    "factionName": "魏",
     "level": 35,
     "playerData": {
       "traits": [
@@ -376,10 +376,10 @@
         { "traitId": "commander", "count": 1 },
         { "traitId": "fortitude", "count": 1 }
       ],
-      "operationTrait": { "name": "\u8987\u9053", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "operationTrait": { "name": "覇道", "description": "操作時的專屬特性，效果內容先用假資料。" },
       "weaponBreakthrough": {
-        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
-        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+        "specialWeapon": { "name": "持有特武", "description": "持有特武時發動的效果，內容先用假資料。" },
+        "limitBreak": { "name": "限界突破", "description": "限界突破時發動的效果，內容先用假資料。" }
       }
     },
     "supportData": {
@@ -389,8 +389,8 @@
         { "traitId": "fortitude", "count": 1 }
       ],
       "summonSkill": {
-        "name": "\u9b4f\u6b66\u865f\u4ee4",
-        "description": "\u6307\u63ee\u9b4f\u52e2\u529b\u7684\u53ec\u559a\u6280\u3002",
+        "name": "魏武號令",
+        "description": "指揮魏勢力的召喚技。",
         "level": 1,
         "upgradeConditions": {
           "all": [
@@ -399,8 +399,8 @@
         }
       },
       "uniqueTactic": {
-        "name": "\u8987\u9053",
-        "description": "\u9b4f\u8207\u6307\u63ee\u9f4a\u5099\u6642\u555f\u52d5\u3002",
+        "name": "覇道",
+        "description": "魏與指揮齊備時啟動。",
         "activationConditions": {
           "all": [
             { "type": "trait", "traitId": "wei", "required": 3 },
@@ -412,9 +412,9 @@
   },
   {
     "id": "sun-shangxiang",
-    "name": "\u5b6b\u5c1a\u9999",
+    "name": "孫尚香",
     "faction": "wu",
-    "factionName": "\u5433",
+    "factionName": "吳",
     "level": 29,
     "playerData": {
       "traits": [
@@ -423,10 +423,10 @@
         { "traitId": "speed", "count": 1 },
         { "traitId": "fire", "count": 1 }
       ],
-      "operationTrait": { "name": "\u5f13\u8170\u59ec", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "operationTrait": { "name": "弓腰姬", "description": "操作時的專屬特性，效果內容先用假資料。" },
       "weaponBreakthrough": {
-        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
-        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+        "specialWeapon": { "name": "持有特武", "description": "持有特武時發動的效果，內容先用假資料。" },
+        "limitBreak": { "name": "限界突破", "description": "限界突破時發動的效果，內容先用假資料。" }
       }
     },
     "supportData": {
@@ -437,8 +437,8 @@
         { "traitId": "fire", "count": 1 }
       ],
       "summonSkill": {
-        "name": "\u708e\u7bad\u96e8",
-        "description": "\u4ee5\u706b\u7bad\u63f4\u8b77\u6230\u5834\u3002",
+        "name": "炎箭雨",
+        "description": "以火箭援護戰場。",
         "level": 1,
         "upgradeConditions": {
           "all": [
@@ -447,8 +447,8 @@
         }
       },
       "uniqueTactic": {
-        "name": "\u5f13\u8170\u59ec",
-        "description": "\u5433\u8207\u5f13\u8853\u9f4a\u5099\u6642\u555f\u52d5\u3002",
+        "name": "弓腰姬",
+        "description": "吳與弓術齊備時啟動。",
         "activationConditions": {
           "all": [
             { "type": "trait", "traitId": "wu", "required": 2 },
