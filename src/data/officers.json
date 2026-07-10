@@ -331,5 +331,323 @@
         }
       }
     }
+  },
+  {
+    "id": "ryza",
+    "name": "萊莎",
+    "faction": "cameo",
+    "factionName": "客座",
+    "level": 33,
+    "playerData": {
+      "traits": [
+        {
+          "traitId": "no-affiliation",
+          "count": 1
+        },
+        {
+          "traitId": "battlefield-flower",
+          "count": 1
+        },
+        {
+          "traitId": "talented-wise",
+          "count": 1
+        },
+        {
+          "traitId": "fire",
+          "count": 1
+        },
+        {
+          "traitId": "ice",
+          "count": 1
+        }
+      ],
+      "operationTrait": {
+        "name": "奔放的鍊金術",
+        "description": "持有印記「戰場之花」的英傑登場機率上升，並增加 15 次重選英傑次數。"
+      },
+      "weaponBreakthrough": {
+        "specialWeapon": {
+          "name": "持有特武",
+          "description": "持有特武效果待補。"
+        },
+        "limitBreak": {
+          "name": "限界突破",
+          "description": "限界突破效果待補。"
+        }
+      }
+    },
+    "supportData": {
+      "traits": [
+        {
+          "traitId": "no-affiliation",
+          "count": 1
+        },
+        {
+          "traitId": "battlefield-flower",
+          "count": 1
+        },
+        {
+          "traitId": "talented-wise",
+          "count": 1
+        },
+        {
+          "traitId": "fire",
+          "count": 1
+        },
+        {
+          "traitId": "ice",
+          "count": 1
+        }
+      ],
+      "summonSkill": {
+        "name": "鍊金術・炎＋冰",
+        "description": "落地後會爆炸並發射炎屬性與冰屬性彈。",
+        "level": 1,
+        "upgradeConditions": {
+          "all": [
+            {
+              "type": "trait",
+              "traitId": "no-affiliation",
+              "required": 2
+            },
+            {
+              "type": "trait",
+              "traitId": "battlefield-flower",
+              "required": 5
+            }
+          ]
+        }
+      },
+      "uniqueTactic": {
+        "name": "天國星體",
+        "description": "召喚這名英傑時，也會同時召喚持有印記「戰場之花」的英傑。",
+        "activationConditions": {
+          "all": [
+            {
+              "type": "trait",
+              "traitId": "fire",
+              "required": 8
+            },
+            {
+              "type": "trait",
+              "traitId": "ice",
+              "required": 3
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "sophie",
+    "name": "蘇菲",
+    "faction": "cameo",
+    "factionName": "客座",
+    "level": 33,
+    "playerData": {
+      "traits": [
+        {
+          "traitId": "no-affiliation",
+          "count": 1
+        },
+        {
+          "traitId": "battlefield-flower",
+          "count": 1
+        },
+        {
+          "traitId": "talented-wise",
+          "count": 1
+        },
+        {
+          "traitId": "fire",
+          "count": 1
+        },
+        {
+          "traitId": "thunder",
+          "count": 1
+        }
+      ],
+      "operationTrait": {
+        "name": "奇妙的配方",
+        "description": "每個印記「戰場之花」提升 10% 一舉召喚量表，並提升 50% 印記「智」的持有數量。"
+      },
+      "weaponBreakthrough": {
+        "specialWeapon": {
+          "name": "持有特武",
+          "description": "持有特武效果待補。"
+        },
+        "limitBreak": {
+          "name": "限界突破",
+          "description": "限界突破效果待補。"
+        }
+      }
+    },
+    "supportData": {
+      "traits": [
+        {
+          "traitId": "no-affiliation",
+          "count": 1
+        },
+        {
+          "traitId": "battlefield-flower",
+          "count": 1
+        },
+        {
+          "traitId": "talented-wise",
+          "count": 1
+        },
+        {
+          "traitId": "fire",
+          "count": 1
+        },
+        {
+          "traitId": "thunder",
+          "count": 1
+        }
+      ],
+      "summonSkill": {
+        "name": "鍊金術・雷＋炎",
+        "description": "落地後會爆炸並投擲雷屬性與炎屬性的道具。",
+        "level": 1,
+        "upgradeConditions": {
+          "all": [
+            {
+              "type": "trait",
+              "traitId": "no-affiliation",
+              "required": 2
+            },
+            {
+              "type": "trait",
+              "traitId": "battlefield-flower",
+              "required": 5
+            }
+          ]
+        }
+      },
+      "uniqueTactic": {
+        "name": "百科鍊金之法",
+        "description": "持有印記「戰場之花」的英傑，召喚冷卻時間-20%，C攻擊力+20%。",
+        "activationConditions": {
+          "all": [
+            {
+              "type": "trait",
+              "traitId": "fire",
+              "required": 3
+            },
+            {
+              "type": "trait",
+              "traitId": "thunder",
+              "required": 6
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "yumia",
+    "name": "優米雅",
+    "faction": "cameo",
+    "factionName": "客座",
+    "level": 33,
+    "playerData": {
+      "traits": [
+        {
+          "traitId": "no-affiliation",
+          "count": 1
+        },
+        {
+          "traitId": "battlefield-flower",
+          "count": 1
+        },
+        {
+          "traitId": "firearms-master",
+          "count": 1
+        },
+        {
+          "traitId": "wind",
+          "count": 1
+        },
+        {
+          "traitId": "slash",
+          "count": 1
+        }
+      ],
+      "operationTrait": {
+        "name": "瑪那流",
+        "description": "每個印記「無所屬」提升 5% 攻擊力。敵人陷入強風狀態時，可產生爆發讓周圍敵人陷入強風狀態。"
+      },
+      "weaponBreakthrough": {
+        "specialWeapon": {
+          "name": "持有特武",
+          "description": "持有特武效果待補。"
+        },
+        "limitBreak": {
+          "name": "限界突破",
+          "description": "限界突破效果待補。"
+        }
+      }
+    },
+    "supportData": {
+      "traits": [
+        {
+          "traitId": "no-affiliation",
+          "count": 1
+        },
+        {
+          "traitId": "battlefield-flower",
+          "count": 1
+        },
+        {
+          "traitId": "firearms-master",
+          "count": 1
+        },
+        {
+          "traitId": "wind",
+          "count": 1
+        },
+        {
+          "traitId": "slash",
+          "count": 1
+        }
+      ],
+      "summonSkill": {
+        "name": "鍊金術・風＋斬",
+        "description": "發射旋轉的風屬性刀後，向前方發射多個斬屬性刀。",
+        "level": 1,
+        "upgradeConditions": {
+          "all": [
+            {
+              "type": "trait",
+              "traitId": "no-affiliation",
+              "required": 2
+            },
+            {
+              "type": "trait",
+              "traitId": "battlefield-flower",
+              "required": 5
+            }
+          ]
+        }
+      },
+      "uniqueTactic": {
+        "name": "觸奏突彈曲",
+        "description": "持有印記「無所屬」的英傑，C攻擊力+50%。",
+        "activationConditions": {
+          "all": [
+            {
+              "type": "trait",
+              "traitId": "wind",
+              "required": 6
+            },
+            {
+              "type": "trait",
+              "traitId": "slash",
+              "required": 3
+            }
+          ]
+        }
+      }
+    }
   }
 ]

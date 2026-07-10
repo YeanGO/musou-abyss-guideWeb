@@ -21,6 +21,27 @@
     "sort": 30
   },
   {
+    "id": "wisdom",
+    "name": "智",
+    "category": "ability",
+    "categoryName": "能力系",
+    "sort": 40
+  },
+  {
+    "id": "charm",
+    "name": "魅",
+    "category": "ability",
+    "categoryName": "能力系",
+    "sort": 50
+  },
+  {
+    "id": "technique",
+    "name": "技",
+    "category": "ability",
+    "categoryName": "能力系",
+    "sort": 60
+  },
+  {
     "id": "fire",
     "name": "火",
     "category": "element",
@@ -40,6 +61,20 @@
     "category": "element",
     "categoryName": "屬性系",
     "sort": 130
+  },
+  {
+    "id": "ice",
+    "name": "冰",
+    "category": "element",
+    "categoryName": "屬性系",
+    "sort": 140
+  },
+  {
+    "id": "slash",
+    "name": "斬",
+    "category": "element",
+    "categoryName": "屬性系",
+    "sort": 150
   },
   {
     "id": "shu",
@@ -96,5 +131,47 @@
     "category": "special",
     "categoryName": "特殊系",
     "sort": 280
+  },
+  {
+    "id": "battlefield-flower",
+    "name": "戰場之花",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 290
+  },
+  {
+    "id": "talented-wise",
+    "name": "才賢",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 300
+  },
+  {
+    "id": "xiliang",
+    "name": "西涼",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 310
+  },
+  {
+    "id": "lu-bu-army",
+    "name": "呂布軍",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 320
+  },
+  {
+    "id": "no-affiliation",
+    "name": "無所屬",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 330
+  },
+  {
+    "id": "firearms-master",
+    "name": "鐵砲名手",
+    "category": "special",
+    "categoryName": "特殊系",
+    "sort": 340
   }
 ]

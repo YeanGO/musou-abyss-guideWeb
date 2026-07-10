@@ -3,5 +3,6 @@
   { "id": "shu", "name": "蜀", "sort": 20 },
   { "id": "wu", "name": "吳", "sort": 30 },
   { "id": "jin", "name": "晉", "sort": 40 },
-  { "id": "other", "name": "群雄", "sort": 50 }
+  { "id": "other", "name": "群雄", "sort": 50 },
+  { "id": "cameo", "name": "客座", "sort": 60 }
 ]
