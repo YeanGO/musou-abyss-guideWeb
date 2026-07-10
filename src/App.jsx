@@ -69,7 +69,6 @@ const T = {
   noNotUpgradedSummon: '\u76ee\u524d\u6c92\u6709\u672a\u5f37\u5316\u7684\u53ec\u559a\u6280',
   importJson: '\u532f\u5165 JSON \u914d\u7f6e',
   importPlaceholder: '\u8cbc\u4e0a\u532f\u51fa\u7684 Build JSON',
-  level: 'Lv.',
 };
 
 function loadSavedBuild() {
@@ -120,7 +119,7 @@ function OfficerSummary({ officer, emptyText, action }) {
   return (
     <article className="selected-summary">
       <div>
-        <span>{officer.factionName} / {T.level}{officer.level}</span>
+        <span>{officer.factionName}</span>
         <strong>{officer.name}</strong>
       </div>
       {action}
@@ -191,7 +190,7 @@ function OfficerCard({ officer, status, build, traitMap, onSetPlayer, onToggleTe
     <article className={isPlayer ? 'officer-card is-player' : 'officer-card'}>
       <div className="officer-card__main">
         <div>
-          <div className="eyebrow">{officer.factionName} / {T.level}{officer.level}</div>
+          <div className="eyebrow">{officer.factionName}</div>
           <h3>{officer.name}</h3>
         </div>
         <div className="status-pair">
