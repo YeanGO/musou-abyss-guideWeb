@@ -1,197 +1,275 @@
-export const SEAL_TYPES = [
+export const TRAIT_CATEGORIES = [
   { id: 'ability', name: '\u80fd\u529b\u7cfb' },
   { id: 'element', name: '\u5c6c\u6027\u7cfb' },
   { id: 'special', name: '\u7279\u6b8a\u7cfb' },
 ];
 
 export const emptyBuild = {
-  version: 2,
-  uniqueOfficerId: '',
-  summonOfficerId: '',
-  companionIds: [],
-  limitBreaks: {},
-  targetSealIds: [],
-  filterMode: 'OR',
+  version: 3,
+  playerOfficerId: '',
+  teamOfficerIds: [],
 };
 
-export function createSealMap(seals) {
-  return new Map(seals.map((seal) => [seal.id, seal]));
+export function createTraitMap(traits) {
+  return new Map(traits.map((trait) => [trait.id, trait]));
 }
 
-export function getOfficerById(officers, id) {
-  return officers.find((officer) => officer.id === id) ?? null;
+export function createOfficerMap(officers) {
+  return new Map(officers.map((officer) => [officer.id, officer]));
 }
 
-export function normalizeBuild(build, officers, seals) {
+export function normalizeBuild(build, officers) {
   const officerIds = new Set(officers.map((officer) => officer.id));
-  const sealIds = new Set(seals.map((seal) => seal.id));
-  const companionIds = Array.isArray(build?.companionIds)
-    ? build.companionIds.filter((id, index, ids) => officerIds.has(id) && ids.indexOf(id) === index)
+  const playerOfficerId = officerIds.has(build?.playerOfficerId) ? build.playerOfficerId : '';
+  const teamOfficerIds = Array.isArray(build?.teamOfficerIds)
+    ? build.teamOfficerIds.filter(
+        (id, index, ids) => officerIds.has(id) && id !== playerOfficerId && ids.indexOf(id) === index,
+      )
     : [];
-  const targetSealIds = Array.isArray(build?.targetSealIds)
-    ? build.targetSealIds.filter((id, index, ids) => sealIds.has(id) && ids.indexOf(id) === index)
-    : [];
-
-  const limitBreaks = Object.fromEntries(
-    Object.entries(build?.limitBreaks ?? {}).filter(([id]) => officerIds.has(id)),
-  );
 
   return {
-    version: 2,
-    uniqueOfficerId: officerIds.has(build?.uniqueOfficerId) ? build.uniqueOfficerId : '',
-    summonOfficerId: officerIds.has(build?.summonOfficerId) ? build.summonOfficerId : '',
-    companionIds,
-    limitBreaks,
-    targetSealIds,
-    filterMode: build?.filterMode === 'AND' ? 'AND' : 'OR',
+    version: 3,
+    playerOfficerId,
+    teamOfficerIds,
   };
 }
 
 export function getSelectedOfficerIds(build) {
-  return [
-    build.uniqueOfficerId,
-    build.summonOfficerId,
-    ...build.companionIds,
-  ].filter(Boolean);
+  return [build.playerOfficerId, ...build.teamOfficerIds].filter(Boolean);
 }
 
-export function isOfficerLimitBroken(build, officerId) {
-  return Boolean(build.limitBreaks[officerId]);
-}
-
-export function getSealMultiplier(build, officerId) {
-  return isOfficerLimitBroken(build, officerId) ? 2 : 1;
-}
-
-export function hydrateSeals(entries, sealMap, multiplier = 1) {
+export function hydrateTraitEntries(entries, traitMap) {
   return entries
     .map((entry) => {
-      const seal = sealMap.get(entry.sealId);
-      if (!seal) return null;
+      const trait = traitMap.get(entry.traitId);
+      if (!trait) return null;
       return {
-        ...seal,
-        count: Number(entry.count ?? 0) * multiplier,
+        ...trait,
+        count: Number(entry.count ?? 0),
       };
     })
-    .filter(Boolean);
+    .filter(Boolean)
+    .sort((a, b) => a.sort - b.sort);
 }
 
-export function getOfficerSealIds(officer) {
-  return new Set([
-    ...officer.companionSeals.map((entry) => entry.sealId),
-    ...officer.uniqueSkill.seals.map((entry) => entry.sealId),
-    ...officer.summonSkill.seals.map((entry) => entry.sealId),
-  ]);
-}
-
-export function getOfficerMatch(officer, targetSealIds) {
-  const officerSealIds = getOfficerSealIds(officer);
-  const matchedSealIds = targetSealIds.filter((id) => officerSealIds.has(id));
-  const missingSealIds = targetSealIds.filter((id) => !officerSealIds.has(id));
-  return {
-    matchedSealIds,
-    missingSealIds,
-    matchesAny: matchedSealIds.length > 0,
-    matchesAll: targetSealIds.length > 0 && missingSealIds.length === 0,
-  };
-}
-
-export function mergeSealCounts(seals) {
-  return seals.reduce((result, seal) => {
-    const current = result.get(seal.id) ?? {
-      id: seal.id,
-      name: seal.name,
-      type: seal.type,
-      typeName: seal.typeName,
-      sort: seal.sort,
-      count: 0,
-    };
-
-    current.count += Number(seal.count ?? 0);
-    result.set(seal.id, current);
-    return result;
-  }, new Map());
-}
-
-export function sealMapToList(map) {
-  return [...map.values()].sort((a, b) => {
-    if (a.sort !== b.sort) return a.sort - b.sort;
-    return a.name.localeCompare(b.name, 'zh-Hant');
+function addTraitEntriesToTotals(traitTotals, entries = []) {
+  entries.forEach((entry) => {
+    traitTotals[entry.traitId] = (traitTotals[entry.traitId] ?? 0) + Number(entry.count ?? 0);
   });
 }
 
-export function calculateBuildStats(officers, seals, build) {
-  const sealMap = createSealMap(seals);
-  const uniqueOfficer = getOfficerById(officers, build.uniqueOfficerId);
-  const summonOfficer = getOfficerById(officers, build.summonOfficerId);
-  const companions = build.companionIds
-    .map((id) => getOfficerById(officers, id))
-    .filter(Boolean);
+export function calculateBuildTraitTotals(officers, build) {
+  const officerMap = createOfficerMap(officers);
+  const traitTotals = {};
+  const playerOfficer = officerMap.get(build.playerOfficerId);
 
-  const uniqueSeals = uniqueOfficer
-    ? hydrateSeals(uniqueOfficer.uniqueSkill.seals, sealMap, getSealMultiplier(build, uniqueOfficer.id))
-    : [];
-  const summonSeals = summonOfficer
-    ? hydrateSeals(summonOfficer.summonSkill.seals, sealMap, getSealMultiplier(build, summonOfficer.id))
-    : [];
-  const companionSeals = companions.flatMap((officer) =>
-    hydrateSeals(officer.companionSeals, sealMap, getSealMultiplier(build, officer.id)),
-  );
+  if (playerOfficer) {
+    addTraitEntriesToTotals(traitTotals, playerOfficer.playerData?.traits);
+  }
 
-  const uniqueAndCompanionSeals = [...uniqueSeals, ...companionSeals];
-  const allSeals = [...uniqueAndCompanionSeals, ...summonSeals];
-  const allSealIds = new Set(allSeals.map((seal) => seal.id));
-  const achievedTargetSealIds = build.targetSealIds.filter((id) => allSealIds.has(id));
-  const missingTargetSealIds = build.targetSealIds.filter((id) => !allSealIds.has(id));
+  build.teamOfficerIds.forEach((officerId) => {
+    const officer = officerMap.get(officerId);
+    if (!officer) return;
+
+    addTraitEntriesToTotals(traitTotals, officer.supportData?.traits);
+  });
+
+  return traitTotals;
+}
+
+export function evaluateCondition(condition, context) {
+  if (!condition) return { passed: true, missing: [] };
+
+  if (Array.isArray(condition.all)) {
+    const results = condition.all.map((item) => evaluateCondition(item, context));
+    return {
+      passed: results.every((result) => result.passed),
+      missing: results.flatMap((result) => result.missing),
+    };
+  }
+
+  if (Array.isArray(condition.any)) {
+    const results = condition.any.map((item) => evaluateCondition(item, context));
+    if (results.some((result) => result.passed)) return { passed: true, missing: [] };
+    return {
+      passed: false,
+      missing: results.flatMap((result) => result.missing),
+    };
+  }
+
+  if (condition.type === 'trait') {
+    const current = context.traitTotals[condition.traitId] ?? 0;
+    const required = Number(condition.required ?? 0);
+    if (current >= required) return { passed: true, missing: [] };
+
+    const trait = context.traitMap.get(condition.traitId);
+    return {
+      passed: false,
+      missing: [
+        {
+          type: 'trait',
+          traitId: condition.traitId,
+          traitName: trait?.name ?? condition.traitId,
+          required,
+          current,
+          missing: Math.max(required - current, 0),
+        },
+      ],
+    };
+  }
+
+  if (condition.type === 'officer') {
+    const selected = context.selectedOfficerIds.includes(condition.officerId);
+    if (selected) return { passed: true, missing: [] };
+
+    const officer = context.officerMap.get(condition.officerId);
+    return {
+      passed: false,
+      missing: [
+        {
+          type: 'officer',
+          officerId: condition.officerId,
+          officerName: officer?.name ?? condition.officerId,
+        },
+      ],
+    };
+  }
+
+  return { passed: false, missing: [] };
+}
+
+export function evaluateOfficerStatus(officer, context) {
+  const summonSkillData = officer.supportData?.summonSkill;
+  const uniqueTacticData = officer.supportData?.uniqueTactic;
+  const summonSkill = evaluateCondition(summonSkillData?.upgradeConditions, context);
+  const uniqueTactic = evaluateCondition(uniqueTacticData?.activationConditions, context);
 
   return {
-    uniqueOfficer,
-    summonOfficer,
-    companions,
-    target: {
-      selected: build.targetSealIds.map((id) => sealMap.get(id)).filter(Boolean),
-      achieved: achievedTargetSealIds.map((id) => sealMap.get(id)).filter(Boolean),
-      missing: missingTargetSealIds.map((id) => sealMap.get(id)).filter(Boolean),
+    officerId: officer.id,
+    officerName: officer.name,
+    factionName: officer.factionName,
+    level: officer.level,
+    summonSkill: {
+      name: summonSkillData?.name ?? '',
+      description: summonSkillData?.description ?? '',
+      passed: summonSkill.passed,
+      missing: summonSkill.missing,
     },
-    groups: {
-      unique: sealMapToList(mergeSealCounts(uniqueSeals)),
-      companions: sealMapToList(mergeSealCounts(companionSeals)),
-      summon: sealMapToList(mergeSealCounts(summonSeals)),
-      uniqueAndCompanions: sealMapToList(mergeSealCounts(uniqueAndCompanionSeals)),
-      all: sealMapToList(mergeSealCounts(allSeals)),
+    uniqueTactic: {
+      name: uniqueTacticData?.name ?? '',
+      description: uniqueTacticData?.description ?? '',
+      passed: uniqueTactic.passed,
+      missing: uniqueTactic.missing,
     },
   };
 }
 
-export function filterOfficers(officers, seals, { search, targetSealIds, mode, activeSealTypes, faction }) {
-  const keyword = search.trim().toLocaleLowerCase('zh-Hant');
-  const sealMap = createSealMap(seals);
+export function groupTraitTotals(traits, traitTotals) {
+  const groups = Object.fromEntries(TRAIT_CATEGORIES.map((category) => [category.id, []]));
 
-  return officers
-    .map((officer) => ({
-      officer,
-      match: getOfficerMatch(officer, targetSealIds),
-    }))
-    .filter(({ officer, match }) => {
-      const matchesSearch =
-        !keyword ||
-        officer.name.toLocaleLowerCase('zh-Hant').includes(keyword) ||
-        officer.factionName.toLocaleLowerCase('zh-Hant').includes(keyword) ||
-        officer.roles.some((role) => role.toLocaleLowerCase('zh-Hant').includes(keyword));
-
-      if (!matchesSearch) return false;
-      if (faction && officer.faction !== faction) return false;
-
-      if (activeSealTypes.length > 0) {
-        const officerTypes = new Set(
-          [...getOfficerSealIds(officer)]
-            .map((sealId) => sealMap.get(sealId)?.type)
-            .filter(Boolean),
-        );
-        if (!activeSealTypes.some((type) => officerTypes.has(type))) return false;
-      }
-
-      if (targetSealIds.length === 0) return true;
-      return mode === 'AND' ? match.matchesAll : match.matchesAny;
+  traits
+    .filter((trait) => traitTotals[trait.id] > 0)
+    .sort((a, b) => a.sort - b.sort)
+    .forEach((trait) => {
+      groups[trait.category]?.push({
+        ...trait,
+        count: traitTotals[trait.id],
+      });
     });
+
+  return groups;
+}
+
+export function calculateBuildResult(officers, traits, build) {
+  const normalizedBuild = normalizeBuild(build, officers);
+  const traitMap = createTraitMap(traits);
+  const officerMap = createOfficerMap(officers);
+  const playerOfficer = officerMap.get(normalizedBuild.playerOfficerId) ?? null;
+  const teamOfficers = normalizedBuild.teamOfficerIds.map((id) => officerMap.get(id)).filter(Boolean);
+  const traitTotals = calculateBuildTraitTotals(officers, normalizedBuild);
+  const selectedOfficerIds = getSelectedOfficerIds(normalizedBuild);
+  const context = {
+    traitTotals,
+    selectedOfficerIds,
+    playerOfficerId: normalizedBuild.playerOfficerId,
+    officerMap,
+    traitMap,
+  };
+  const officerStatuses = teamOfficers.map((officer) => evaluateOfficerStatus(officer, context));
+  const allOfficerStatuses = officers.map((officer) => evaluateOfficerStatus(officer, context));
+  const playerStatus = playerOfficer
+    ? {
+        operationTrait: playerOfficer.playerData?.operationTrait ?? null,
+        weaponBreakthrough: {
+          specialWeapon: playerOfficer.playerData?.weaponBreakthrough?.specialWeapon ?? null,
+          limitBreak: playerOfficer.playerData?.weaponBreakthrough?.limitBreak ?? null,
+        },
+      }
+    : {
+        operationTrait: null,
+        weaponBreakthrough: {
+          specialWeapon: null,
+          limitBreak: null,
+        },
+      };
+
+  return {
+    build: normalizedBuild,
+    playerOfficer,
+    teamOfficers,
+    traitTotals,
+    traitGroups: groupTraitTotals(traits, traitTotals),
+    playerStatus,
+    officerStatuses,
+    allOfficerStatuses,
+    activatedUniqueTactics: officerStatuses.filter((status) => status.uniqueTactic.passed),
+    inactiveUniqueTactics: officerStatuses.filter((status) => !status.uniqueTactic.passed),
+    upgradedSummonSkills: officerStatuses.filter((status) => status.summonSkill.passed),
+    notUpgradedSummonSkills: officerStatuses.filter((status) => !status.summonSkill.passed),
+  };
+}
+
+export function filterOfficers(officers, traits, { search, faction, activeTraitCategories, statusFilter, result }) {
+  const keyword = search.trim().toLocaleLowerCase('zh-Hant');
+  const traitMap = createTraitMap(traits);
+  const statusMap = new Map(result.officerStatuses.map((status) => [status.officerId, status]));
+
+  return officers.filter((officer) => {
+    const searchableTraitNames = [
+      ...(officer.playerData?.traits ?? []),
+      ...(officer.supportData?.traits ?? []),
+    ]
+      .map((entry) => traitMap.get(entry.traitId)?.name ?? '')
+      .join(' ')
+      .toLocaleLowerCase('zh-Hant');
+
+    const matchesSearch =
+      !keyword ||
+      officer.name.toLocaleLowerCase('zh-Hant').includes(keyword) ||
+      officer.factionName.toLocaleLowerCase('zh-Hant').includes(keyword) ||
+      searchableTraitNames.includes(keyword) ||
+      (officer.playerData?.operationTrait?.name ?? '').toLocaleLowerCase('zh-Hant').includes(keyword) ||
+      (officer.supportData?.summonSkill?.name ?? '').toLocaleLowerCase('zh-Hant').includes(keyword) ||
+      (officer.supportData?.uniqueTactic?.name ?? '').toLocaleLowerCase('zh-Hant').includes(keyword);
+
+    if (!matchesSearch) return false;
+    if (faction && officer.faction !== faction) return false;
+
+    if (activeTraitCategories.length > 0) {
+      const officerCategories = new Set(
+        [...(officer.playerData?.traits ?? []), ...(officer.supportData?.traits ?? [])]
+          .map((entry) => traitMap.get(entry.traitId)?.category)
+          .filter(Boolean),
+      );
+      if (!activeTraitCategories.some((category) => officerCategories.has(category))) return false;
+    }
+
+    const status = statusMap.get(officer.id);
+    if (statusFilter === 'unique-active') return Boolean(status?.uniqueTactic.passed);
+    if (statusFilter === 'summon-upgraded') return Boolean(status?.summonSkill.passed);
+    if (statusFilter === 'team') return result.build.teamOfficerIds.includes(officer.id);
+    if (statusFilter === 'player') return result.build.playerOfficerId === officer.id;
+
+    return true;
+  });
 }

@@ -1,27 +1,318 @@
 [
   {
+    "id": "guan-yu",
+    "name": "\u95dc\u7fbd",
+    "faction": "shu",
+    "factionName": "\u8700",
+    "level": 36,
+    "playerData": {
+      "traits": [
+        { "traitId": "shu", "count": 1 },
+        { "traitId": "brave-general", "count": 1 },
+        { "traitId": "shu-five-tigers", "count": 1 },
+        { "traitId": "brute-force", "count": 1 },
+        { "traitId": "power", "count": 1 },
+        { "traitId": "fortitude", "count": 1 },
+        { "traitId": "fire", "count": 1 }
+      ],
+      "operationTrait": {
+        "name": "\u8ecd\u795e",
+        "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002"
+      },
+      "weaponBreakthrough": {
+        "specialWeapon": {
+          "name": "\u6301\u6709\u7279\u6b66",
+          "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002"
+        },
+        "limitBreak": {
+          "name": "\u9650\u754c\u7a81\u7834",
+          "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002"
+        }
+      }
+    },
+    "supportData": {
+      "traits": [
+        { "traitId": "shu", "count": 1 },
+        { "traitId": "brave-general", "count": 1 },
+        { "traitId": "shu-five-tigers", "count": 1 },
+        { "traitId": "brute-force", "count": 1 },
+        { "traitId": "power", "count": 1 },
+        { "traitId": "fortitude", "count": 1 },
+        { "traitId": "fire", "count": 1 }
+      ],
+      "summonSkill": {
+        "name": "\u88c2\u5203\u30fb\u708e",
+        "description": "\u63ee\u51fa\u6a6b\u6383\u524d\u65b9\u7684\u708e\u5c6c\u6027\u65ac\u64ca\u3002",
+        "level": 1,
+        "upgradeConditions": {
+          "all": [
+            { "type": "trait", "traitId": "brave-general", "required": 5 }
+          ]
+        }
+      },
+      "uniqueTactic": {
+        "name": "\u4e94\u864e\u96c6\u7d50",
+        "description": "\u53ec\u559a\u9019\u540d\u82f1\u5091\u6642\uff0c\u4e5f\u6703\u540c\u6642\u53ec\u559a\u6301\u6709\u5370\u8a18\u300c\u8700\u4e4b\u4e94\u864e\u5927\u5c07\u300d\u7684\u82f1\u5091\u3002",
+        "activationConditions": {
+          "all": [
+            { "type": "trait", "traitId": "shu-five-tigers", "required": 5 }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "zhang-fei",
+    "name": "\u5f35\u98db",
+    "faction": "shu",
+    "factionName": "\u8700",
+    "level": 34,
+    "playerData": {
+      "traits": [
+        { "traitId": "shu", "count": 1 },
+        { "traitId": "brave-general", "count": 1 },
+        { "traitId": "shu-five-tigers", "count": 1 },
+        { "traitId": "brute-force", "count": 1 },
+        { "traitId": "power", "count": 1 },
+        { "traitId": "fortitude", "count": 1 },
+        { "traitId": "thunder", "count": 1 }
+      ],
+      "operationTrait": {
+        "name": "\u71d5\u4eba",
+        "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002"
+      },
+      "weaponBreakthrough": {
+        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+      }
+    },
+    "supportData": {
+      "traits": [
+        { "traitId": "shu", "count": 1 },
+        { "traitId": "brave-general", "count": 1 },
+        { "traitId": "shu-five-tigers", "count": 1 },
+        { "traitId": "brute-force", "count": 1 },
+        { "traitId": "power", "count": 1 },
+        { "traitId": "fortitude", "count": 1 },
+        { "traitId": "thunder", "count": 1 }
+      ],
+      "summonSkill": {
+        "name": "\u86c7\u77db\u6012\u543c",
+        "description": "\u4ee5\u96f7\u64ca\u9707\u958b\u5468\u570d\u6575\u4eba\u3002",
+        "level": 1,
+        "upgradeConditions": {
+          "all": [
+            { "type": "trait", "traitId": "brute-force", "required": 3 }
+          ]
+        }
+      },
+      "uniqueTactic": {
+        "name": "\u71d5\u4eba\u6012\u543c",
+        "description": "\u9700\u8981\u883b\u529b\u8207\u731b\u5c07\u7d44\u5408\u624d\u80fd\u555f\u52d5\u3002",
+        "activationConditions": {
+          "all": [
+            { "type": "trait", "traitId": "brute-force", "required": 3 },
+            { "type": "trait", "traitId": "brave-general", "required": 3 }
+          ]
+        }
+      }
+    }
+  },
+  {
     "id": "zhao-yun",
     "name": "\u8d99\u96f2",
     "faction": "shu",
     "factionName": "\u8700",
-    "roles": ["\u7a81\u9032", "\u9ad8\u6a5f\u52d5"],
-    "companionSeals": [
-      { "sealId": "attack", "count": 1 },
-      { "sealId": "wind", "count": 1 }
-    ],
-    "uniqueSkill": {
-      "name": "\u9f8d\u81bd\u7a81",
-      "seals": [
-        { "sealId": "attack", "count": 2 },
-        { "sealId": "speed", "count": 1 }
-      ]
+    "level": 33,
+    "playerData": {
+      "traits": [
+        { "traitId": "shu", "count": 1 },
+        { "traitId": "brave-general", "count": 1 },
+        { "traitId": "shu-five-tigers", "count": 1 },
+        { "traitId": "speed", "count": 1 },
+        { "traitId": "wind", "count": 1 },
+        { "traitId": "power", "count": 1 }
+      ],
+      "operationTrait": { "name": "\u9f8d\u81bd", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "weaponBreakthrough": {
+        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+      }
     },
-    "summonSkill": {
-      "name": "\u84bc\u9f8d\u53ec\u559a",
-      "seals": [
-        { "sealId": "wind", "count": 2 },
-        { "sealId": "combo", "count": 1 }
-      ]
+    "supportData": {
+      "traits": [
+        { "traitId": "shu", "count": 1 },
+        { "traitId": "brave-general", "count": 1 },
+        { "traitId": "shu-five-tigers", "count": 1 },
+        { "traitId": "speed", "count": 1 },
+        { "traitId": "wind", "count": 1 },
+        { "traitId": "power", "count": 1 }
+      ],
+      "summonSkill": {
+        "name": "\u9f8d\u81bd\u7a81",
+        "description": "\u4ee5\u9ad8\u901f\u7a81\u9032\u8cab\u7a7f\u6575\u9663\u3002",
+        "level": 1,
+        "upgradeConditions": {
+          "all": [
+            { "type": "trait", "traitId": "speed", "required": 3 }
+          ]
+        }
+      },
+      "uniqueTactic": {
+        "name": "\u5e38\u5c71\u4e4b\u9f8d",
+        "description": "\u8700\u4e4b\u4e94\u864e\u5927\u5c07\u8db3\u5920\u6642\u555f\u52d5\u3002",
+        "activationConditions": {
+          "all": [
+            { "type": "trait", "traitId": "shu-five-tigers", "required": 5 }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "liu-bei",
+    "name": "\u5289\u5099",
+    "faction": "shu",
+    "factionName": "\u8700",
+    "level": 30,
+    "playerData": {
+      "traits": [
+        { "traitId": "shu", "count": 1 },
+        { "traitId": "commander", "count": 1 },
+        { "traitId": "fortitude", "count": 1 }
+      ],
+      "operationTrait": { "name": "\u4ec1\u5fb7", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "weaponBreakthrough": {
+        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+      }
+    },
+    "supportData": {
+      "traits": [
+        { "traitId": "shu", "count": 1 },
+        { "traitId": "commander", "count": 1 },
+        { "traitId": "fortitude", "count": 1 }
+      ],
+      "summonSkill": {
+        "name": "\u4ec1\u5fb7\u865f\u4ee4",
+        "description": "\u4ee5\u6307\u63ee\u7cfb\u7279\u6027\u5f37\u5316\u968a\u4f0d\u3002",
+        "level": 1,
+        "upgradeConditions": {
+          "all": [
+            { "type": "trait", "traitId": "commander", "required": 2 }
+          ]
+        }
+      },
+      "uniqueTactic": {
+        "name": "\u662d\u70c8\u4e4b\u5fb7",
+        "description": "\u8700\u52e2\u529b\u8207\u6307\u63ee\u4e26\u91cd\u3002",
+        "activationConditions": {
+          "all": [
+            { "type": "trait", "traitId": "shu", "required": 4 },
+            { "type": "trait", "traitId": "commander", "required": 2 }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "ma-chao",
+    "name": "\u99ac\u8d85",
+    "faction": "shu",
+    "factionName": "\u8700",
+    "level": 32,
+    "playerData": {
+      "traits": [
+        { "traitId": "shu", "count": 1 },
+        { "traitId": "brave-general", "count": 1 },
+        { "traitId": "shu-five-tigers", "count": 1 },
+        { "traitId": "speed", "count": 1 },
+        { "traitId": "thunder", "count": 1 }
+      ],
+      "operationTrait": { "name": "\u9326\u99ac\u8d85", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "weaponBreakthrough": {
+        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+      }
+    },
+    "supportData": {
+      "traits": [
+        { "traitId": "shu", "count": 1 },
+        { "traitId": "brave-general", "count": 1 },
+        { "traitId": "shu-five-tigers", "count": 1 },
+        { "traitId": "speed", "count": 1 },
+        { "traitId": "thunder", "count": 1 }
+      ],
+      "summonSkill": {
+        "name": "\u9326\u99ac\u8d85",
+        "description": "\u9ad8\u901f\u7a81\u64ca\u4e26\u9644\u5e36\u96f7\u64ca\u3002",
+        "level": 1,
+        "upgradeConditions": {
+          "all": [
+            { "type": "trait", "traitId": "thunder", "required": 3 }
+          ]
+        }
+      },
+      "uniqueTactic": {
+        "name": "\u897f\u6dbc\u4e4b\u9326",
+        "description": "\u9700\u8981\u901f\u8207\u731b\u5c07\u7279\u6027\u3002",
+        "activationConditions": {
+          "all": [
+            { "type": "trait", "traitId": "speed", "required": 2 },
+            { "type": "trait", "traitId": "brave-general", "required": 3 }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "id": "huang-zhong",
+    "name": "\u9ec3\u5fe0",
+    "faction": "shu",
+    "factionName": "\u8700",
+    "level": 31,
+    "playerData": {
+      "traits": [
+        { "traitId": "shu", "count": 1 },
+        { "traitId": "brave-general", "count": 1 },
+        { "traitId": "shu-five-tigers", "count": 1 },
+        { "traitId": "archery", "count": 1 },
+        { "traitId": "fire", "count": 1 }
+      ],
+      "operationTrait": { "name": "\u8001\u5c07\u4e4b\u5f13", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "weaponBreakthrough": {
+        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+      }
+    },
+    "supportData": {
+      "traits": [
+        { "traitId": "shu", "count": 1 },
+        { "traitId": "brave-general", "count": 1 },
+        { "traitId": "shu-five-tigers", "count": 1 },
+        { "traitId": "archery", "count": 1 },
+        { "traitId": "fire", "count": 1 }
+      ],
+      "summonSkill": {
+        "name": "\u767e\u6b65\u7a7f\u694a",
+        "description": "\u9060\u8ddd\u96e2\u653e\u51fa\u706b\u5c6c\u6027\u7bad\u96e8\u3002",
+        "level": 1,
+        "upgradeConditions": {
+          "all": [
+            { "type": "trait", "traitId": "archery", "required": 2 }
+          ]
+        }
+      },
+      "uniqueTactic": {
+        "name": "\u8001\u5c07\u4e4b\u5f13",
+        "description": "\u5f13\u8853\u8207\u706b\u4e26\u91cd\u6642\u555f\u52d5\u3002",
+        "activationConditions": {
+          "all": [
+            { "type": "trait", "traitId": "archery", "required": 2 },
+            { "type": "trait", "traitId": "fire", "required": 2 }
+          ]
+        }
+      }
     }
   },
   {
@@ -29,49 +320,48 @@
     "name": "\u5442\u5e03",
     "faction": "other",
     "factionName": "\u7fa4\u96c4",
-    "roles": ["\u9ad8\u706b\u529b", "\u58d3\u5236"],
-    "companionSeals": [
-      { "sealId": "attack", "count": 2 },
-      { "sealId": "aura", "count": 1 }
-    ],
-    "uniqueSkill": {
-      "name": "\u9b3c\u795e\u4e82\u821e",
-      "seals": [
-        { "sealId": "attack", "count": 3 },
-        { "sealId": "aura", "count": 1 }
-      ]
+    "level": 40,
+    "playerData": {
+      "traits": [
+        { "traitId": "brave-general", "count": 1 },
+        { "traitId": "brute-force", "count": 1 },
+        { "traitId": "power", "count": 2 },
+        { "traitId": "thunder", "count": 1 }
+      ],
+      "operationTrait": { "name": "\u9b3c\u795e", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "weaponBreakthrough": {
+        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+      }
     },
-    "summonSkill": {
-      "name": "\u65b9\u5929\u53ec\u96f7",
-      "seals": [
-        { "sealId": "thunder", "count": 2 },
-        { "sealId": "critical", "count": 1 }
-      ]
-    }
-  },
-  {
-    "id": "sun-shangxiang",
-    "name": "\u5b6b\u5c1a\u9999",
-    "faction": "wu",
-    "factionName": "\u5433",
-    "roles": ["\u9060\u8ddd\u96e2", "\u9023\u64ca"],
-    "companionSeals": [
-      { "sealId": "speed", "count": 1 },
-      { "sealId": "fire", "count": 1 }
-    ],
-    "uniqueSkill": {
-      "name": "\u5f13\u8170\u59ec",
-      "seals": [
-        { "sealId": "speed", "count": 2 },
-        { "sealId": "critical", "count": 1 }
-      ]
-    },
-    "summonSkill": {
-      "name": "\u708e\u7bad\u96e8",
-      "seals": [
-        { "sealId": "fire", "count": 2 },
-        { "sealId": "combo", "count": 1 }
-      ]
+    "supportData": {
+      "traits": [
+        { "traitId": "brave-general", "count": 1 },
+        { "traitId": "brute-force", "count": 1 },
+        { "traitId": "power", "count": 2 },
+        { "traitId": "thunder", "count": 1 }
+      ],
+      "summonSkill": {
+        "name": "\u9b3c\u795e\u4e82\u821e",
+        "description": "\u5f37\u529b\u7bc4\u570d\u653b\u64ca\u3002",
+        "level": 1,
+        "upgradeConditions": {
+          "any": [
+            { "type": "trait", "traitId": "power", "required": 4 },
+            { "type": "trait", "traitId": "brute-force", "required": 4 }
+          ]
+        }
+      },
+      "uniqueTactic": {
+        "name": "\u7121\u96d9\u98db\u5c07",
+        "description": "\u529b\u8207\u883b\u529b\u8db3\u5920\u6642\u555f\u52d5\u3002",
+        "activationConditions": {
+          "all": [
+            { "type": "trait", "traitId": "power", "required": 4 },
+            { "type": "trait", "traitId": "brute-force", "required": 3 }
+          ]
+        }
+      }
     }
   },
   {
@@ -79,49 +369,93 @@
     "name": "\u66f9\u64cd",
     "faction": "wei",
     "factionName": "\u9b4f",
-    "roles": ["\u6307\u63ee", "\u5747\u8861"],
-    "companionSeals": [
-      { "sealId": "strategy", "count": 1 },
-      { "sealId": "ice", "count": 1 }
-    ],
-    "uniqueSkill": {
-      "name": "\u8987\u9053",
-      "seals": [
-        { "sealId": "strategy", "count": 2 },
-        { "sealId": "defense", "count": 1 }
-      ]
+    "level": 35,
+    "playerData": {
+      "traits": [
+        { "traitId": "wei", "count": 1 },
+        { "traitId": "commander", "count": 1 },
+        { "traitId": "fortitude", "count": 1 }
+      ],
+      "operationTrait": { "name": "\u8987\u9053", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "weaponBreakthrough": {
+        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+      }
     },
-    "summonSkill": {
-      "name": "\u9b4f\u6b66\u865f\u4ee4",
-      "seals": [
-        { "sealId": "defense", "count": 2 },
-        { "sealId": "ice", "count": 1 }
-      ]
+    "supportData": {
+      "traits": [
+        { "traitId": "wei", "count": 1 },
+        { "traitId": "commander", "count": 1 },
+        { "traitId": "fortitude", "count": 1 }
+      ],
+      "summonSkill": {
+        "name": "\u9b4f\u6b66\u865f\u4ee4",
+        "description": "\u6307\u63ee\u9b4f\u52e2\u529b\u7684\u53ec\u559a\u6280\u3002",
+        "level": 1,
+        "upgradeConditions": {
+          "all": [
+            { "type": "trait", "traitId": "wei", "required": 3 }
+          ]
+        }
+      },
+      "uniqueTactic": {
+        "name": "\u8987\u9053",
+        "description": "\u9b4f\u8207\u6307\u63ee\u9f4a\u5099\u6642\u555f\u52d5\u3002",
+        "activationConditions": {
+          "all": [
+            { "type": "trait", "traitId": "wei", "required": 3 },
+            { "type": "trait", "traitId": "commander", "required": 2 }
+          ]
+        }
+      }
     }
   },
   {
-    "id": "wang-yuanji",
-    "name": "\u738b\u5143\u59ec",
-    "faction": "jin",
-    "factionName": "\u6649",
-    "roles": ["\u6280\u5de7", "\u63f4\u8b77"],
-    "companionSeals": [
-      { "sealId": "defense", "count": 1 },
-      { "sealId": "combo", "count": 1 }
-    ],
-    "uniqueSkill": {
-      "name": "\u51b7\u975c\u9023\u5203",
-      "seals": [
-        { "sealId": "combo", "count": 2 },
-        { "sealId": "speed", "count": 1 }
-      ]
+    "id": "sun-shangxiang",
+    "name": "\u5b6b\u5c1a\u9999",
+    "faction": "wu",
+    "factionName": "\u5433",
+    "level": 29,
+    "playerData": {
+      "traits": [
+        { "traitId": "wu", "count": 1 },
+        { "traitId": "archery", "count": 1 },
+        { "traitId": "speed", "count": 1 },
+        { "traitId": "fire", "count": 1 }
+      ],
+      "operationTrait": { "name": "\u5f13\u8170\u59ec", "description": "\u64cd\u4f5c\u6642\u7684\u5c08\u5c6c\u7279\u6027\uff0c\u6548\u679c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+      "weaponBreakthrough": {
+        "specialWeapon": { "name": "\u6301\u6709\u7279\u6b66", "description": "\u6301\u6709\u7279\u6b66\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" },
+        "limitBreak": { "name": "\u9650\u754c\u7a81\u7834", "description": "\u9650\u754c\u7a81\u7834\u6642\u767c\u52d5\u7684\u6548\u679c\uff0c\u5167\u5bb9\u5148\u7528\u5047\u8cc7\u6599\u3002" }
+      }
     },
-    "summonSkill": {
-      "name": "\u98db\u5203\u63f4\u8b77",
-      "seals": [
-        { "sealId": "wind", "count": 1 },
-        { "sealId": "combo", "count": 2 }
-      ]
+    "supportData": {
+      "traits": [
+        { "traitId": "wu", "count": 1 },
+        { "traitId": "archery", "count": 1 },
+        { "traitId": "speed", "count": 1 },
+        { "traitId": "fire", "count": 1 }
+      ],
+      "summonSkill": {
+        "name": "\u708e\u7bad\u96e8",
+        "description": "\u4ee5\u706b\u7bad\u63f4\u8b77\u6230\u5834\u3002",
+        "level": 1,
+        "upgradeConditions": {
+          "all": [
+            { "type": "trait", "traitId": "fire", "required": 3 }
+          ]
+        }
+      },
+      "uniqueTactic": {
+        "name": "\u5f13\u8170\u59ec",
+        "description": "\u5433\u8207\u5f13\u8853\u9f4a\u5099\u6642\u555f\u52d5\u3002",
+        "activationConditions": {
+          "all": [
+            { "type": "trait", "traitId": "wu", "required": 2 },
+            { "type": "trait", "traitId": "archery", "required": 2 }
+          ]
+        }
+      }
     }
   }
 ]

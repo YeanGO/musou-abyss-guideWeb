@@ -1,263 +1,261 @@
 import { useEffect, useMemo, useState } from 'react';
-import {
-  Check,
-  Download,
-  RotateCcw,
-  Search,
-  ShieldPlus,
-  Sparkles,
-  Sword,
-  Trash2,
-  Upload,
-  X,
-} from 'lucide-react';
+import { Check, Download, Search, Trash2, Upload, UserRound, UsersRound, X } from 'lucide-react';
 import officers from './data/officers.json';
-import seals from './data/seals.json';
+import traits from './data/traits.json';
 import categories from './data/categories.json';
 import {
-  SEAL_TYPES,
-  calculateBuildStats,
-  createSealMap,
+  TRAIT_CATEGORIES,
+  calculateBuildResult,
+  createTraitMap,
   emptyBuild,
   filterOfficers,
-  getSelectedOfficerIds,
-  hydrateSeals,
-  isOfficerLimitBroken,
+  hydrateTraitEntries,
   normalizeBuild,
 } from './logic/buildCalculator.js';
 
-const STORAGE_KEY = 'muso-abyss-build-simulator-zh-v2';
+const STORAGE_KEY = 'muso-abyss-build-simulator-v3';
 
 const T = {
-  noSeals: '\u5c1a\u7121\u5370',
-  remove: '\u79fb\u9664',
-  limitBreak: '\u9650\u754c\u7a81\u7834',
-  noLimitBreak: '\u672a\u7a81\u7834',
-  companions: '\u96a8\u884c\u6b66\u5c07',
-  people: '\u4eba',
-  noCompanions: '\u5c1a\u672a\u9078\u64c7\u96a8\u884c\u6b66\u5c07',
-  matchedSeals: '\u547d\u4e2d\u5370',
-  uniqueShort: '\u56fa\u6709',
-  summonShort: '\u53ec\u559a',
-  companionShort: '\u96a8\u884c',
-  noMatchedTarget: '\u6c92\u6709\u7b26\u5408\u76ee\u524d\u76ee\u6a19\u5370',
-  clearNotice: '\u5df2\u6e05\u7a7a\u76ee\u524d\u914d\u7f6e',
-  copiedNotice: '\u5df2\u8907\u88fd\u914d\u7f6e JSON',
-  exportFallbackNotice: '\u5df2\u653e\u5165\u532f\u5165\u6b04\u4f4d\uff0c\u53ef\u624b\u52d5\u8907\u88fd',
-  importedNotice: '\u5df2\u532f\u5165\u914d\u7f6e',
-  invalidJsonNotice: 'JSON \u683c\u5f0f\u7121\u6cd5\u8b80\u53d6',
-  appKicker: '\u672c\u5730\u4e2d\u6587\u7248\u5de5\u5177',
+  appKicker: '\u624b\u52d5 Build Simulator',
   appTitle: '\u7121\u96d9\u6df1\u6df5 Build Simulator \u4e2d\u6587\u7248',
-  selected: '\u5df2\u9078',
-  targetSeals: '\u76ee\u6a19\u5370',
-  achieved: '\u5df2\u9054\u6210',
-  cancelAllLimitBreak: '\u53d6\u6d88\u5168\u54e1\u7a81\u7834',
-  allLimitBreak: '\u5168\u54e1\u9650\u754c\u7a81\u7834',
-  export: '\u532f\u51fa',
+  playerOfficer: '\u64cd\u4f5c\u82f1\u5091',
+  teamOfficers: '\u968a\u4f0d\u82f1\u5091',
+  noPlayer: '\u5c1a\u672a\u9078\u64c7\u64cd\u4f5c\u82f1\u5091',
+  noTeam: '\u5c1a\u672a\u9078\u64c7\u968a\u4f0d\u82f1\u5091',
+  playerRule: '\u64cd\u4f5c\u82f1\u5091\u6703\u8a08\u5165\u5c6c\u6027\u52a0\u7e3d\uff0c\u4f46\u4e0d\u6703\u6aa2\u67e5\u53ec\u559a\u6280\u8207\u56fa\u6709\u6230\u6cd5\u3002',
+  selectedTeamCount: '\u968a\u4f0d',
+  people: '\u4eba',
+  traitTotal: 'Trait \u7e3d\u91cf',
+  activeUnique: '\u5df2\u767c\u52d5\u56fa\u6709\u6230\u6cd5',
+  inactiveUnique: '\u672a\u767c\u52d5\u56fa\u6709\u6230\u6cd5',
+  upgradedSummon: '\u5df2\u5f37\u5316\u53ec\u559a\u6280',
+  notUpgradedSummon: '\u672a\u5f37\u5316\u53ec\u559a\u6280',
   clear: '\u6e05\u7a7a',
-  uniqueSkill: '\u56fa\u6709\u6230\u6cd5',
-  selectUniqueHint: '\u5f9e\u5019\u9078\u6b66\u5c07\u9078\u64c7\u56fa\u6709\u6230\u6cd5',
-  summonSkill: '\u53ec\u559a\u6280',
-  selectSummonHint: '\u5f9e\u5019\u9078\u6b66\u5c07\u9078\u64c7\u53ec\u559a\u6280',
-  sealFilter: '\u6536\u96c6\u5370\u7be9\u9078',
-  clearTarget: '\u6e05\u9664\u76ee\u6a19',
-  searchPlaceholder: '\u641c\u5c0b\u6b66\u5c07\u3001\u52e2\u529b\u6216\u6a19\u7c64',
-  filterMode: '\u7be9\u9078\u6a21\u5f0f',
+  export: '\u532f\u51fa',
+  import: '\u532f\u5165',
+  copied: '\u5df2\u8907\u88fd\u914d\u7f6e JSON',
+  exportFallback: '\u5df2\u653e\u5165\u532f\u5165\u6b04\u4f4d\uff0c\u53ef\u624b\u52d5\u8907\u88fd',
+  imported: '\u5df2\u532f\u5165\u914d\u7f6e',
+  invalidJson: 'JSON \u683c\u5f0f\u7121\u6cd5\u8b80\u53d6',
+  cleared: '\u5df2\u6e05\u7a7a\u76ee\u524d Build',
+  remove: '\u79fb\u9664',
+  setPlayer: '\u8a2d\u70ba\u64cd\u4f5c',
+  addTeam: '\u52a0\u5165\u968a\u4f0d',
+  removeTeam: '\u79fb\u51fa\u968a\u4f0d',
+  officerList: '\u82f1\u5091\u9078\u64c7',
+  searchPlaceholder: '\u641c\u5c0b\u82f1\u5091\u3001\u52e2\u529b\u3001trait\u3001\u64cd\u4f5c\u7279\u6027\u3001\u53ec\u559a\u6280\u6216\u56fa\u6709\u6230\u6cd5',
   faction: '\u52e2\u529b',
   all: '\u5168\u90e8',
-  sealCategory: '\u5370\u5206\u985e',
-  targetStatus: '\u76ee\u6a19\u9054\u6210\u72c0\u614b',
-  noAchievedTarget: '\u5c1a\u672a\u9054\u6210\u4efb\u4f55\u76ee\u6a19\u5370',
+  traitCategory: 'Trait \u5206\u985e',
+  statusFilter: '\u72c0\u614b\u7be9\u9078',
+  allOfficers: '\u5168\u90e8\u82f1\u5091',
+  onlyPlayer: '\u64cd\u4f5c',
+  onlyTeam: '\u968a\u4f0d',
+  uniqueActive: '\u56fa\u6709\u5df2\u767c\u52d5',
+  summonUpgraded: '\u53ec\u559a\u5df2\u5f37\u5316',
+  currentBuild: '\u76ee\u524d Build',
+  uniqueTactic: '\u56fa\u6709\u6230\u6cd5',
+  summonSkill: '\u53ec\u559a\u6280',
+  operationTrait: '\u64cd\u4f5c\u7279\u6027',
+  weaponBreakthrough: '\u6b66\u5668\u7a81\u7834\u6548\u679c',
+  specialWeapon: '\u6301\u6709\u7279\u6b66',
+  limitBreak: '\u9650\u754c\u7a81\u7834',
+  passed: '\u9054\u6210',
   missing: '\u5c1a\u7f3a',
-  noMissingTarget: '\u6c92\u6709\u5c1a\u7f3a\u76ee\u6a19\u5370',
-  candidates: '\u5019\u9078\u6b66\u5c07',
-  stats: '\u5370\u7d71\u8a08',
-  uniqueSeals: '\u56fa\u6709\u6230\u6cd5\u5370',
-  companionSeals: '\u96a8\u884c\u6b66\u5c07\u5370',
-  summonSeals: '\u53ec\u559a\u6280\u5370',
-  uniqueAndCompanion: '\u56fa\u6709 + \u96a8\u884c\u5408\u8a08',
-  allSeals: '\u6536\u96c6\u5370\u5217\u8868 / \u5168\u5370\u5408\u8a08',
+  noTraits: '\u5c1a\u7121 trait',
+  noActivatedUnique: '\u76ee\u524d\u6c92\u6709\u5df2\u767c\u52d5\u7684\u56fa\u6709\u6230\u6cd5',
+  noInactiveUnique: '\u76ee\u524d\u6c92\u6709\u672a\u767c\u52d5\u7684\u56fa\u6709\u6230\u6cd5',
+  noUpgradedSummon: '\u76ee\u524d\u6c92\u6709\u5df2\u5f37\u5316\u7684\u53ec\u559a\u6280',
+  noNotUpgradedSummon: '\u76ee\u524d\u6c92\u6709\u672a\u5f37\u5316\u7684\u53ec\u559a\u6280',
   importJson: '\u532f\u5165 JSON \u914d\u7f6e',
-  importPlaceholder: '\u8cbc\u4e0a\u532f\u51fa\u7684\u914d\u7f6e JSON',
-  import: '\u532f\u5165',
+  importPlaceholder: '\u8cbc\u4e0a\u532f\u51fa\u7684 Build JSON',
+  level: 'Lv.',
 };
 
 function loadSavedBuild() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? normalizeBuild(JSON.parse(saved), officers, seals) : emptyBuild;
+    return saved ? normalizeBuild(JSON.parse(saved), officers) : emptyBuild;
   } catch {
     return emptyBuild;
   }
 }
 
-function SealPill({ seal, active, count, onClick, muted }) {
+function TraitPill({ trait, count }) {
   return (
-    <button
-      type="button"
-      className={[
-        'seal-pill',
-        active ? 'is-active' : '',
-        muted ? 'is-muted' : '',
-        `seal-pill--${seal.type}`,
-      ].join(' ')}
-      onClick={onClick}
-    >
-      <span>{seal.name}</span>
-      {count ? <strong>{count}</strong> : null}
+    <button type="button" className={['trait-pill', `trait-pill--${trait.category}`].join(' ')}>
+      <span>{trait.name}</span>
+      {typeof count === 'number' ? <strong>{count}</strong> : null}
     </button>
   );
 }
 
-function SealList({ seals: sealItems, emptyText = T.noSeals }) {
-  if (sealItems.length === 0) return <div className="empty-state">{emptyText}</div>;
+function TraitList({ items, emptyText = T.noTraits }) {
+  if (items.length === 0) return <div className="empty-state">{emptyText}</div>;
 
   return (
-    <div className="seal-list">
-      {sealItems.map((seal) => (
-        <SealPill key={seal.id} seal={seal} count={seal.count} muted />
+    <div className="trait-list">
+      {items.map((trait) => (
+        <TraitPill key={trait.id} trait={trait} count={trait.count} />
       ))}
     </div>
   );
 }
 
-function SlotCard({ title, icon: Icon, officer, emptyText, build, onToggleLimitBreak, onRemove, seals: slotSeals }) {
-  return (
-    <section className="slot-card">
-      <div className="slot-card__head">
-        <div>
-          <Icon size={18} aria-hidden="true" />
-          <h2>{title}</h2>
-        </div>
-        {officer ? (
-          <button type="button" className="icon-button" onClick={onRemove} title={T.remove}>
-            <X size={16} aria-hidden="true" />
-          </button>
-        ) : null}
-      </div>
+function InfoBlock({ title, item }) {
+  if (!item) return null;
 
-      {officer ? (
-        <>
-          <button
-            type="button"
-            className={isOfficerLimitBroken(build, officer.id) ? 'selected-officer is-limit-broken' : 'selected-officer'}
-            onClick={() => onToggleLimitBreak(officer.id)}
-          >
-            <span>{officer.name}</span>
-            <small>{isOfficerLimitBroken(build, officer.id) ? T.limitBreak : T.noLimitBreak}</small>
-          </button>
-          <SealList seals={slotSeals} />
-        </>
-      ) : (
-        <div className="empty-state">{emptyText}</div>
-      )}
-    </section>
+  return (
+    <article className="info-block">
+      <span>{title}</span>
+      <strong>{item.name}</strong>
+      <p>{item.description}</p>
+    </article>
   );
 }
 
-function CompanionSlot({ companions, build, onToggleLimitBreak, onRemove, sealMap }) {
-  return (
-    <section className="slot-card slot-card--wide">
-      <div className="slot-card__head">
-        <div>
-          <ShieldPlus size={18} aria-hidden="true" />
-          <h2>{T.companions}</h2>
-        </div>
-        <span>{companions.length} {T.people}</span>
-      </div>
+function OfficerSummary({ officer, emptyText, action }) {
+  if (!officer) return <div className="empty-state">{emptyText}</div>;
 
-      {companions.length === 0 ? (
-        <div className="empty-state">{T.noCompanions}</div>
-      ) : (
-        <div className="companion-list">
-          {companions.map((officer) => (
-            <article key={officer.id} className="companion-item">
-              <button
-                type="button"
-                className={isOfficerLimitBroken(build, officer.id) ? 'selected-officer is-limit-broken' : 'selected-officer'}
-                onClick={() => onToggleLimitBreak(officer.id)}
-              >
-                <span>{officer.name}</span>
-                <small>{isOfficerLimitBroken(build, officer.id) ? T.limitBreak : T.noLimitBreak}</small>
-              </button>
-              <SealList seals={hydrateSeals(officer.companionSeals, sealMap)} />
-              <button type="button" className="text-danger" onClick={() => onRemove(officer.id)}>
-                {T.remove}
-              </button>
-            </article>
-          ))}
-        </div>
-      )}
-    </section>
+  return (
+    <article className="selected-summary">
+      <div>
+        <span>{officer.factionName} / {T.level}{officer.level}</span>
+        <strong>{officer.name}</strong>
+      </div>
+      {action}
+    </article>
   );
 }
 
-function OfficerCandidate({ officer, match, build, sealMap, onSelectUnique, onSelectSummon, onToggleCompanion }) {
-  const matchedSeals = match.matchedSealIds.map((id) => sealMap.get(id)).filter(Boolean);
-  const allSeals = hydrateSeals(
-    [...officer.companionSeals, ...officer.uniqueSkill.seals, ...officer.summonSkill.seals],
-    sealMap,
-  );
+function PlayerDetails({ officer, playerStatus, traitMap }) {
+  if (!officer) return null;
 
   return (
-    <article className="candidate-card">
-      <div className="candidate-card__main">
+    <div className="player-details">
+      <TraitList items={hydrateTraitEntries(officer.playerData?.traits ?? [], traitMap)} />
+      <InfoBlock title={T.operationTrait} item={playerStatus.operationTrait} />
+      <div className="breakthrough-grid">
+        <InfoBlock title={T.specialWeapon} item={playerStatus.weaponBreakthrough.specialWeapon} />
+        <InfoBlock title={T.limitBreak} item={playerStatus.weaponBreakthrough.limitBreak} />
+      </div>
+    </div>
+  );
+}
+
+function MissingList({ missing }) {
+  if (!missing || missing.length === 0) return null;
+
+  return (
+    <ul className="missing-list">
+      {missing.map((item) => (
+        <li key={`${item.type}-${item.traitId ?? item.officerId}`}>
+          {item.type === 'trait'
+            ? `${item.traitName} ${item.current}/${item.required} (${T.missing} ${item.missing})`
+            : `${T.missing} ${item.officerName}`}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function StatusBadge({ passed }) {
+  return <span className={passed ? 'status-badge is-passed' : 'status-badge'}>{passed ? T.passed : T.missing}</span>;
+}
+
+function SupportSkillPreview({ officer, status }) {
+  return (
+    <div className="skill-grid">
+      <div>
+        <span>{T.uniqueTactic}</span>
+        <strong>{officer.supportData.uniqueTactic.name}</strong>
+        <p>{officer.supportData.uniqueTactic.description}</p>
+        <MissingList missing={status.uniqueTactic.missing} />
+      </div>
+      <div>
+        <span>{T.summonSkill}</span>
+        <strong>{officer.supportData.summonSkill.name}</strong>
+        <p>{officer.supportData.summonSkill.description}</p>
+        <MissingList missing={status.summonSkill.missing} />
+      </div>
+    </div>
+  );
+}
+
+function OfficerCard({ officer, status, build, traitMap, onSetPlayer, onToggleTeam }) {
+  const isPlayer = build.playerOfficerId === officer.id;
+  const isTeam = build.teamOfficerIds.includes(officer.id);
+  const traitItems = hydrateTraitEntries(officer.supportData?.traits ?? [], traitMap);
+
+  return (
+    <article className={isPlayer ? 'officer-card is-player' : 'officer-card'}>
+      <div className="officer-card__main">
         <div>
-          <div className="eyebrow">{officer.factionName}</div>
+          <div className="eyebrow">{officer.factionName} / {T.level}{officer.level}</div>
           <h3>{officer.name}</h3>
-          <div className="tag-row">
-            {officer.roles.map((role) => (
-              <span key={role}>{role}</span>
-            ))}
-          </div>
         </div>
-        <div className="candidate-card__match">
-          <strong>{matchedSeals.length}</strong>
-          <span>{T.matchedSeals}</span>
+        <div className="status-pair">
+          <StatusBadge passed={status.uniqueTactic.passed} />
+          <StatusBadge passed={status.summonSkill.passed} />
         </div>
       </div>
 
-      <div className="candidate-skills">
-        <div>
-          <span>{T.uniqueShort}</span>
-          <strong>{officer.uniqueSkill.name}</strong>
-        </div>
-        <div>
-          <span>{T.summonShort}</span>
-          <strong>{officer.summonSkill.name}</strong>
-        </div>
-      </div>
+      <TraitList items={traitItems} />
+      <SupportSkillPreview officer={officer} status={status} />
 
-      <SealList seals={matchedSeals.length > 0 ? matchedSeals : allSeals} emptyText={T.noMatchedTarget} />
-
-      <div className="candidate-card__actions">
-        <button type="button" className={build.uniqueOfficerId === officer.id ? 'is-active' : ''} onClick={() => onSelectUnique(officer.id)}>
-          <Sword size={16} aria-hidden="true" />
-          {T.uniqueShort}
+      <div className="officer-card__actions">
+        <button type="button" className={isPlayer ? 'is-active' : ''} onClick={() => onSetPlayer(officer.id)}>
+          <UserRound size={16} aria-hidden="true" />
+          {T.setPlayer}
         </button>
-        <button type="button" className={build.summonOfficerId === officer.id ? 'is-active' : ''} onClick={() => onSelectSummon(officer.id)}>
-          <Sparkles size={16} aria-hidden="true" />
-          {T.summonShort}
-        </button>
-        <button type="button" className={build.companionIds.includes(officer.id) ? 'is-active' : ''} onClick={() => onToggleCompanion(officer.id)}>
-          {build.companionIds.includes(officer.id) ? <Check size={16} aria-hidden="true" /> : <ShieldPlus size={16} aria-hidden="true" />}
-          {T.companionShort}
+        <button type="button" className={isTeam ? 'is-active' : ''} disabled={isPlayer} onClick={() => onToggleTeam(officer.id)}>
+          {isTeam ? <Check size={16} aria-hidden="true" /> : <UsersRound size={16} aria-hidden="true" />}
+          {isTeam ? T.removeTeam : T.addTeam}
         </button>
       </div>
     </article>
   );
 }
 
-function StatBlock({ title, seals: sealItems }) {
-  const total = sealItems.reduce((sum, seal) => sum + seal.count, 0);
-
+function TeamOfficerDetail({ officer, status, traitMap, onRemove }) {
   return (
-    <section className="stat-block">
-      <div className="stat-block__head">
+    <article className="team-detail">
+      <OfficerSummary
+        officer={officer}
+        action={
+          <button type="button" className="icon-button" title={T.remove} onClick={() => onRemove(officer.id)}>
+            <X size={16} aria-hidden="true" />
+          </button>
+        }
+      />
+      <TraitList items={hydrateTraitEntries(officer.supportData?.traits ?? [], traitMap)} />
+      <SupportSkillPreview officer={officer} status={status} />
+    </article>
+  );
+}
+
+function ResultList({ title, items, kind, emptyText }) {
+  return (
+    <section className="result-block">
+      <div className="result-block__head">
         <h3>{title}</h3>
-        <strong>{total}</strong>
+        <strong>{items.length}</strong>
       </div>
-      <SealList seals={sealItems} />
+      {items.length === 0 ? (
+        <div className="empty-state">{emptyText}</div>
+      ) : (
+        <div className="result-list">
+          {items.map((item) => {
+            const result = kind === 'unique' ? item.uniqueTactic : item.summonSkill;
+            return (
+              <article key={`${kind}-${item.officerId}`} className="result-item">
+                <strong>{item.officerName} - {result.name}</strong>
+                <MissingList missing={result.missing} />
+              </article>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 }
@@ -265,23 +263,26 @@ function StatBlock({ title, seals: sealItems }) {
 export default function App() {
   const [build, setBuild] = useState(loadSavedBuild);
   const [search, setSearch] = useState('');
-  const [activeSealTypes, setActiveSealTypes] = useState([]);
   const [activeFaction, setActiveFaction] = useState('');
+  const [activeTraitCategories, setActiveTraitCategories] = useState([]);
+  const [statusFilter, setStatusFilter] = useState('all');
   const [importText, setImportText] = useState('');
   const [notice, setNotice] = useState('');
 
-  const sealMap = useMemo(() => createSealMap(seals), []);
-  const stats = useMemo(() => calculateBuildStats(officers, seals, build), [build]);
+  const traitMap = useMemo(() => createTraitMap(traits), []);
+  const result = useMemo(() => calculateBuildResult(officers, traits, build), [build]);
+  const allStatusMap = useMemo(() => new Map(result.allOfficerStatuses.map((status) => [status.officerId, status])), [result]);
+  const teamStatusMap = useMemo(() => new Map(result.officerStatuses.map((status) => [status.officerId, status])), [result]);
   const filteredOfficers = useMemo(
     () =>
-      filterOfficers(officers, seals, {
+      filterOfficers(officers, traits, {
         search,
-        targetSealIds: build.targetSealIds,
-        mode: build.filterMode,
-        activeSealTypes,
         faction: activeFaction,
+        activeTraitCategories,
+        statusFilter,
+        result,
       }),
-    [search, build.targetSealIds, build.filterMode, activeSealTypes, activeFaction],
+    [search, activeFaction, activeTraitCategories, statusFilter, result],
   );
 
   useEffect(() => {
@@ -294,88 +295,71 @@ export default function App() {
   }
 
   function updateBuild(updater) {
-    setBuild((current) => normalizeBuild(updater(current), officers, seals));
+    setBuild((current) => normalizeBuild(updater(current), officers));
   }
 
-  function selectUnique(officerId) {
-    updateBuild((current) => ({ ...current, uniqueOfficerId: current.uniqueOfficerId === officerId ? '' : officerId }));
+  function setPlayer(officerId) {
+    updateBuild((current) => ({
+      ...current,
+      playerOfficerId: current.playerOfficerId === officerId ? '' : officerId,
+      teamOfficerIds: current.teamOfficerIds.filter((id) => id !== officerId),
+    }));
   }
 
-  function selectSummon(officerId) {
-    updateBuild((current) => ({ ...current, summonOfficerId: current.summonOfficerId === officerId ? '' : officerId }));
-  }
-
-  function toggleCompanion(officerId) {
+  function toggleTeam(officerId) {
     updateBuild((current) => {
-      const exists = current.companionIds.includes(officerId);
+      if (current.playerOfficerId === officerId) return current;
+      const exists = current.teamOfficerIds.includes(officerId);
       return {
         ...current,
-        companionIds: exists ? current.companionIds.filter((id) => id !== officerId) : [...current.companionIds, officerId],
+        teamOfficerIds: exists ? current.teamOfficerIds.filter((id) => id !== officerId) : [...current.teamOfficerIds, officerId],
       };
     });
-  }
-
-  function toggleLimitBreak(officerId) {
-    updateBuild((current) => ({
-      ...current,
-      limitBreaks: { ...current.limitBreaks, [officerId]: !current.limitBreaks[officerId] },
-    }));
-  }
-
-  function toggleAllLimitBreaks(nextValue) {
-    updateBuild((current) => {
-      const nextLimitBreaks = { ...current.limitBreaks };
-      getSelectedOfficerIds(current).forEach((id) => {
-        nextLimitBreaks[id] = nextValue;
-      });
-      return { ...current, limitBreaks: nextLimitBreaks };
-    });
-  }
-
-  function toggleTargetSeal(sealId) {
-    updateBuild((current) => ({
-      ...current,
-      targetSealIds: current.targetSealIds.includes(sealId)
-        ? current.targetSealIds.filter((id) => id !== sealId)
-        : [...current.targetSealIds, sealId],
-    }));
-  }
-
-  function toggleSealType(type) {
-    setActiveSealTypes((current) => (current.includes(type) ? current.filter((item) => item !== type) : [...current, type]));
   }
 
   function clearBuild() {
     setBuild(emptyBuild);
     setSearch('');
-    setActiveSealTypes([]);
     setActiveFaction('');
+    setActiveTraitCategories([]);
+    setStatusFilter('all');
     setImportText('');
-    setNoticeBriefly(T.clearNotice);
+    setNoticeBriefly(T.cleared);
   }
 
   async function exportBuild() {
     const text = JSON.stringify(build, null, 2);
     try {
       await navigator.clipboard.writeText(text);
-      setNoticeBriefly(T.copiedNotice);
+      setNoticeBriefly(T.copied);
     } catch {
       setImportText(text);
-      setNoticeBriefly(T.exportFallbackNotice);
+      setNoticeBriefly(T.exportFallback);
     }
   }
 
   function importBuild() {
     try {
-      setBuild(normalizeBuild(JSON.parse(importText), officers, seals));
-      setNoticeBriefly(T.importedNotice);
+      setBuild(normalizeBuild(JSON.parse(importText), officers));
+      setNoticeBriefly(T.imported);
     } catch {
-      setNoticeBriefly(T.invalidJsonNotice);
+      setNoticeBriefly(T.invalidJson);
     }
   }
 
-  const selectedIds = getSelectedOfficerIds(build);
-  const allLimitBroken = selectedIds.length > 0 && selectedIds.every((id) => isOfficerLimitBroken(build, id));
+  function toggleTraitCategory(categoryId) {
+    setActiveTraitCategories((current) =>
+      current.includes(categoryId) ? current.filter((id) => id !== categoryId) : [...current, categoryId],
+    );
+  }
+
+  const statusOptions = [
+    { id: 'all', label: T.allOfficers },
+    { id: 'player', label: T.onlyPlayer },
+    { id: 'team', label: T.onlyTeam },
+    { id: 'unique-active', label: T.uniqueActive },
+    { id: 'summon-upgraded', label: T.summonUpgraded },
+  ];
 
   return (
     <div className="app-shell">
@@ -390,15 +374,12 @@ export default function App() {
       <main className="workbench">
         <section className="toolbar panel">
           <div className="toolbar__summary">
-            <span>{T.selected} {selectedIds.length} {T.people}</span>
-            <span>{T.targetSeals} {build.targetSealIds.length} {String.fromCharCode(0x500b)}</span>
-            <span>{T.achieved} {stats.target.achieved.length} / {stats.target.selected.length}</span>
+            <span>{T.selectedTeamCount} {build.teamOfficerIds.length} {T.people}</span>
+            <span>{T.traitTotal} {Object.values(result.traitTotals).reduce((sum, count) => sum + count, 0)}</span>
+            <span>{T.activeUnique} {result.activatedUniqueTactics.length}</span>
+            <span>{T.upgradedSummon} {result.upgradedSummonSkills.length}</span>
           </div>
           <div className="toolbar__actions">
-            <button type="button" onClick={() => toggleAllLimitBreaks(!allLimitBroken)}>
-              <RotateCcw size={16} aria-hidden="true" />
-              {allLimitBroken ? T.cancelAllLimitBreak : T.allLimitBreak}
-            </button>
             <button type="button" onClick={exportBuild}>
               <Download size={16} aria-hidden="true" />
               {T.export}
@@ -410,36 +391,66 @@ export default function App() {
           </div>
         </section>
 
-        <section className="selection-grid">
-          <SlotCard title={T.uniqueSkill} icon={Sword} officer={stats.uniqueOfficer} emptyText={T.selectUniqueHint} build={build} onToggleLimitBreak={toggleLimitBreak} onRemove={() => selectUnique(build.uniqueOfficerId)} seals={stats.groups.unique} />
-          <SlotCard title={T.summonSkill} icon={Sparkles} officer={stats.summonOfficer} emptyText={T.selectSummonHint} build={build} onToggleLimitBreak={toggleLimitBreak} onRemove={() => selectSummon(build.summonOfficerId)} seals={stats.groups.summon} />
-          <CompanionSlot companions={stats.companions} build={build} onToggleLimitBreak={toggleLimitBreak} onRemove={toggleCompanion} sealMap={sealMap} />
+        <section className="selection-grid selection-grid--v3">
+          <section className="slot-card">
+            <div className="slot-card__head">
+              <div>
+                <UserRound size={18} aria-hidden="true" />
+                <h2>{T.playerOfficer}</h2>
+              </div>
+            </div>
+            <p className="rule-note">{T.playerRule}</p>
+            <OfficerSummary
+              officer={result.playerOfficer}
+              emptyText={T.noPlayer}
+              action={
+                result.playerOfficer ? (
+                  <button type="button" className="icon-button" title={T.remove} onClick={() => setPlayer(result.playerOfficer.id)}>
+                    <X size={16} aria-hidden="true" />
+                  </button>
+                ) : null
+              }
+            />
+            <PlayerDetails officer={result.playerOfficer} playerStatus={result.playerStatus} traitMap={traitMap} />
+          </section>
+
+          <section className="slot-card slot-card--wide">
+            <div className="slot-card__head">
+              <div>
+                <UsersRound size={18} aria-hidden="true" />
+                <h2>{T.teamOfficers}</h2>
+              </div>
+              <span>{result.teamOfficers.length} {T.people}</span>
+            </div>
+            {result.teamOfficers.length === 0 ? (
+              <div className="empty-state">{T.noTeam}</div>
+            ) : (
+              <div className="team-summary-list">
+                {result.teamOfficers.map((officer) => (
+                  <TeamOfficerDetail
+                    key={officer.id}
+                    officer={officer}
+                    status={teamStatusMap.get(officer.id)}
+                    traitMap={traitMap}
+                    onRemove={toggleTeam}
+                  />
+                ))}
+              </div>
+            )}
+          </section>
         </section>
 
         <section className="planner-grid">
           <aside className="panel filter-console">
             <div className="section-heading">
-              <h2>{T.sealFilter}</h2>
-              <button type="button" className="text-button" onClick={() => updateBuild((current) => ({ ...current, targetSealIds: [] }))}>
-                {T.clearTarget}
-              </button>
+              <h2>{T.officerList}</h2>
+              <span>{filteredOfficers.length} {T.people}</span>
             </div>
 
             <label className="search-box">
               <Search size={18} aria-hidden="true" />
               <input type="search" value={search} onChange={(event) => setSearch(event.target.value)} placeholder={T.searchPlaceholder} />
             </label>
-
-            <div className="control-group">
-              <div className="control-label">{T.filterMode}</div>
-              <div className="segmented-control">
-                {['AND', 'OR'].map((mode) => (
-                  <button key={mode} type="button" className={build.filterMode === mode ? 'is-active' : ''} onClick={() => updateBuild((current) => ({ ...current, filterMode: mode }))}>
-                    {mode}
-                  </button>
-                ))}
-              </div>
-            </div>
 
             <div className="control-group">
               <div className="control-label">{T.faction}</div>
@@ -456,67 +467,66 @@ export default function App() {
             </div>
 
             <div className="control-group">
-              <div className="control-label">{T.sealCategory}</div>
+              <div className="control-label">{T.traitCategory}</div>
               <div className="segmented-wrap">
-                {SEAL_TYPES.map((type) => (
-                  <button key={type.id} type="button" className={activeSealTypes.includes(type.id) ? 'is-active' : ''} onClick={() => toggleSealType(type.id)}>
-                    {type.name}
+                {TRAIT_CATEGORIES.map((category) => (
+                  <button key={category.id} type="button" className={activeTraitCategories.includes(category.id) ? 'is-active' : ''} onClick={() => toggleTraitCategory(category.id)}>
+                    {category.name}
                   </button>
                 ))}
               </div>
             </div>
 
-            <div className="seal-picker">
-              {SEAL_TYPES.map((type) => {
-                const typedSeals = seals.filter((seal) => seal.type === type.id).sort((a, b) => a.sort - b.sort);
-                return (
-                  <div key={type.id} className="seal-picker__group">
-                    <h3>{type.name}</h3>
-                    <div className="seal-list">
-                      {typedSeals.map((seal) => (
-                        <SealPill key={seal.id} seal={seal} active={build.targetSealIds.includes(seal.id)} onClick={() => toggleTargetSeal(seal.id)} />
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="target-status">
-              <h3>{T.targetStatus}</h3>
-              <div>
-                <span>{T.achieved}</span>
-                <SealList seals={stats.target.achieved} emptyText={T.noAchievedTarget} />
-              </div>
-              <div>
-                <span>{T.missing}</span>
-                <SealList seals={stats.target.missing} emptyText={T.noMissingTarget} />
+            <div className="control-group">
+              <div className="control-label">{T.statusFilter}</div>
+              <div className="segmented-wrap">
+                {statusOptions.map((option) => (
+                  <button key={option.id} type="button" className={statusFilter === option.id ? 'is-active' : ''} onClick={() => setStatusFilter(option.id)}>
+                    {option.label}
+                  </button>
+                ))}
               </div>
             </div>
           </aside>
 
           <section className="panel candidate-panel">
-            <div className="section-heading">
-              <h2>{T.candidates}</h2>
-              <span>{filteredOfficers.length} {T.people}</span>
-            </div>
             <div className="candidate-list">
-              {filteredOfficers.map(({ officer, match }) => (
-                <OfficerCandidate key={officer.id} officer={officer} match={match} build={build} sealMap={sealMap} onSelectUnique={selectUnique} onSelectSummon={selectSummon} onToggleCompanion={toggleCompanion} />
+              {filteredOfficers.map((officer) => (
+                <OfficerCard
+                  key={officer.id}
+                  officer={officer}
+                  status={allStatusMap.get(officer.id)}
+                  build={build}
+                  traitMap={traitMap}
+                  onSetPlayer={setPlayer}
+                  onToggleTeam={toggleTeam}
+                />
               ))}
             </div>
           </section>
 
           <aside className="panel stat-panel">
             <div className="section-heading">
-              <h2>{T.stats}</h2>
+              <h2>{T.currentBuild}</h2>
             </div>
+
             <div className="stats-stack">
-              <StatBlock title={T.uniqueSeals} seals={stats.groups.unique} />
-              <StatBlock title={T.companionSeals} seals={stats.groups.companions} />
-              <StatBlock title={T.summonSeals} seals={stats.groups.summon} />
-              <StatBlock title={T.uniqueAndCompanion} seals={stats.groups.uniqueAndCompanions} />
-              <StatBlock title={T.allSeals} seals={stats.groups.all} />
+              {TRAIT_CATEGORIES.map((category) => (
+                <section key={category.id} className="stat-block">
+                  <div className="stat-block__head">
+                    <h3>{category.name}</h3>
+                    <strong>{result.traitGroups[category.id].reduce((sum, item) => sum + item.count, 0)}</strong>
+                  </div>
+                  <TraitList items={result.traitGroups[category.id]} />
+                </section>
+              ))}
+            </div>
+
+            <div className="condition-stack">
+              <ResultList title={T.activeUnique} items={result.activatedUniqueTactics} kind="unique" emptyText={T.noActivatedUnique} />
+              <ResultList title={T.inactiveUnique} items={result.inactiveUniqueTactics} kind="unique" emptyText={T.noInactiveUnique} />
+              <ResultList title={T.upgradedSummon} items={result.upgradedSummonSkills} kind="summon" emptyText={T.noUpgradedSummon} />
+              <ResultList title={T.notUpgradedSummon} items={result.notUpgradedSummonSkills} kind="summon" emptyText={T.noNotUpgradedSummon} />
             </div>
 
             <div className="import-box">

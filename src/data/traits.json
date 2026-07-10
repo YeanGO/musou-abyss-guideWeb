@@ -1,0 +1,16 @@
+[
+  { "id": "power", "name": "\u529b", "category": "ability", "categoryName": "\u80fd\u529b\u7cfb", "sort": 10 },
+  { "id": "fortitude", "name": "\u5805", "category": "ability", "categoryName": "\u80fd\u529b\u7cfb", "sort": 20 },
+  { "id": "speed", "name": "\u901f", "category": "ability", "categoryName": "\u80fd\u529b\u7cfb", "sort": 30 },
+  { "id": "fire", "name": "\u706b", "category": "element", "categoryName": "\u5c6c\u6027\u7cfb", "sort": 110 },
+  { "id": "wind", "name": "\u98a8", "category": "element", "categoryName": "\u5c6c\u6027\u7cfb", "sort": 120 },
+  { "id": "thunder", "name": "\u96f7", "category": "element", "categoryName": "\u5c6c\u6027\u7cfb", "sort": 130 },
+  { "id": "shu", "name": "\u8700", "category": "special", "categoryName": "\u7279\u6b8a\u7cfb", "sort": 210 },
+  { "id": "wei", "name": "\u9b4f", "category": "special", "categoryName": "\u7279\u6b8a\u7cfb", "sort": 220 },
+  { "id": "wu", "name": "\u5433", "category": "special", "categoryName": "\u7279\u6b8a\u7cfb", "sort": 230 },
+  { "id": "brave-general", "name": "\u731b\u5c07", "category": "special", "categoryName": "\u7279\u6b8a\u7cfb", "sort": 240 },
+  { "id": "shu-five-tigers", "name": "\u8700\u4e4b\u4e94\u864e\u5927\u5c07", "category": "special", "categoryName": "\u7279\u6b8a\u7cfb", "sort": 250 },
+  { "id": "brute-force", "name": "\u883b\u529b", "category": "special", "categoryName": "\u7279\u6b8a\u7cfb", "sort": 260 },
+  { "id": "commander", "name": "\u6307\u63ee", "category": "special", "categoryName": "\u7279\u6b8a\u7cfb", "sort": 270 },
+  { "id": "archery", "name": "\u5f13\u8853", "category": "special", "categoryName": "\u7279\u6b8a\u7cfb", "sort": 280 }
+]
